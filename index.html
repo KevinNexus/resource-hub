@@ -3,63 +3,75 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#081321">
-<meta name="description" content="资源公社 · RESOURCE HUB — 面向中国及亚洲用户的全球在线工具、云盘、AI、图库、视频、音乐、开发工具与实用资源导航">
-<meta name="keywords" content="资源公社,在线工具,网盘,AI,图库,视频,音乐,云盘,开发工具,Photopea,天气,航班,白噪音">
+<meta name="theme-color" content="#07101c">
+<meta name="description" content="资源公社 · RESOURCE HUB — 在线工具、云盘、AI、图片、手机工具、开发工具、实用资源与 Telegram 资源导航">
 <title>资源公社 · RESOURCE HUB</title>
 
 <style>
 :root{
   --bg:#07101c;
-  --bg2:#0a1626;
-  --panel:#0d1b2d;
-  --panel2:#11243b;
-  --panel3:#162c46;
+  --bg2:#0a1422;
+  --panel:#0e1b2c;
+  --panel2:#122238;
+  --panel3:#172b46;
+  --line:#203753;
   --text:#f4f8ff;
-  --muted:#91a6c0;
-  --line:rgba(255,255,255,.09);
+  --muted:#91a5bd;
   --blue:#3da5ff;
-  --blue2:#1579d4;
-  --cyan:#3edfff;
+  --blue2:#197bd5;
+  --cyan:#39d8ff;
   --gold:#e8bd61;
-  --gold2:#ffdb82;
-  --green:#38d98a;
-  --red:#ff6477;
-  --shadow:0 18px 60px rgba(0,0,0,.32);
-  --radius:18px;
+  --gold2:#ffdc87;
+  --green:#39d98a;
+  --red:#ff6577;
+  --shadow:0 18px 50px rgba(0,0,0,.28);
+  --radius:20px;
 }
 
-body.light{
+[data-theme="light"]{
   --bg:#eef4fb;
-  --bg2:#f5f8fc;
+  --bg2:#e5edf7;
   --panel:#ffffff;
-  --panel2:#f4f8fd;
-  --panel3:#e8f1fb;
-  --text:#142235;
-  --muted:#60748d;
-  --line:rgba(20,34,53,.10);
-  --shadow:0 18px 50px rgba(35,65,100,.13);
+  --panel2:#f5f8fc;
+  --panel3:#edf4fb;
+  --line:#d7e2ef;
+  --text:#122033;
+  --muted:#60738a;
+  --blue:#147fd1;
+  --blue2:#0866b4;
+  --cyan:#009fc5;
+  --gold:#a97616;
+  --gold2:#d29b2e;
+  --green:#159b62;
+  --red:#d7475c;
+  --shadow:0 18px 45px rgba(25,55,90,.12);
 }
 
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
 
 body{
-  margin:0;
   font-family:
     Inter,
+    "Segoe UI",
     "PingFang SC",
     "Microsoft YaHei",
-    "Noto Sans SC",
     Arial,
     sans-serif;
   background:
-    radial-gradient(circle at 10% 0%,rgba(40,135,255,.14),transparent 30%),
-    radial-gradient(circle at 90% 10%,rgba(58,214,255,.09),transparent 25%),
+    radial-gradient(circle at 10% 0%,rgba(61,165,255,.10),transparent 30%),
+    radial-gradient(circle at 90% 15%,rgba(57,216,255,.07),transparent 26%),
     var(--bg);
   color:var(--text);
+  line-height:1.6;
   min-height:100vh;
-  transition:.3s ease;
 }
 
 a{
@@ -67,7 +79,9 @@ a{
   text-decoration:none;
 }
 
-button,input,select{
+button,
+input,
+select{
   font:inherit;
 }
 
@@ -76,21 +90,39 @@ button{
 }
 
 .container{
-  width:min(1180px,calc(100% - 32px));
+  width:min(1400px,92%);
   margin:auto;
 }
 
-.nav{
+.muted{
+  color:var(--muted);
+}
+
+.small{
+  font-size:12px;
+}
+
+.hidden{
+  display:none!important;
+}
+
+/* ===== Header ===== */
+
+header{
   position:sticky;
   top:0;
   z-index:1000;
+  background:rgba(7,16,28,.82);
   backdrop-filter:blur(18px);
-  background:color-mix(in srgb,var(--bg) 82%,transparent);
-  border-bottom:1px solid var(--line);
+  border-bottom:1px solid rgba(61,165,255,.13);
 }
 
-.nav-inner{
-  height:68px;
+[data-theme="light"] header{
+  background:rgba(238,244,251,.86);
+}
+
+.nav{
+  min-height:72px;
   display:flex;
   align-items:center;
   gap:22px;
@@ -99,149 +131,152 @@ button{
 .logo{
   display:flex;
   align-items:center;
-  gap:10px;
-  font-weight:900;
-  letter-spacing:.3px;
-  white-space:nowrap;
+  gap:11px;
+  min-width:max-content;
 }
 
 .logo-mark{
-  width:38px;
-  height:38px;
+  width:40px;
+  height:40px;
   border-radius:12px;
   display:grid;
   place-items:center;
   color:#fff;
-  font-size:19px;
+  font-weight:900;
   background:
-    linear-gradient(145deg,#3da5ff,#1562c4 55%,#e8bd61);
+    linear-gradient(135deg,#176dc1,#3dc8ff 55%,#e8bd61);
   box-shadow:
-    0 8px 25px rgba(40,145,255,.28),
-    inset 0 1px rgba(255,255,255,.35);
+    0 0 30px rgba(61,165,255,.28);
 }
 
-.logo-text span{
-  display:block;
+.logo-text{
+  font-size:17px;
+  font-weight:900;
+  letter-spacing:.5px;
 }
 
 .logo-sub{
   font-size:10px;
   color:var(--muted);
-  letter-spacing:2px;
-  margin-top:2px;
+  letter-spacing:1.6px;
+  margin-top:-3px;
 }
 
 .nav-links{
   display:flex;
-  align-items:center;
   gap:5px;
-  margin-left:auto;
+  flex:1;
+  justify-content:center;
 }
 
 .nav-links a{
-  padding:9px 10px;
+  padding:9px 12px;
+  border-radius:10px;
   color:var(--muted);
   font-size:13px;
-  border-radius:10px;
   transition:.2s;
 }
 
 .nav-links a:hover{
   color:var(--text);
-  background:var(--panel2);
+  background:rgba(61,165,255,.10);
 }
 
 .nav-actions{
   display:flex;
-  align-items:center;
   gap:8px;
 }
 
-.nav-btn{
+.btn{
   border:1px solid var(--line);
-  background:var(--panel);
+  background:var(--panel2);
   color:var(--text);
+  padding:9px 13px;
   border-radius:11px;
-  padding:8px 11px;
-  font-size:12px;
+  transition:.2s;
 }
 
-.nav-btn.primary{
+.btn:hover{
+  transform:translateY(-1px);
+  border-color:var(--blue);
+  box-shadow:0 8px 25px rgba(61,165,255,.12);
+}
+
+.btn-primary{
+  border-color:transparent;
   background:linear-gradient(135deg,var(--blue2),var(--blue));
   color:#fff;
-  border:0;
 }
 
-.theme-btn{
-  width:38px;
-  height:38px;
-  padding:0;
-  display:grid;
-  place-items:center;
-  font-size:17px;
+.btn-gold{
+  border-color:rgba(232,189,97,.35);
+  background:rgba(232,189,97,.10);
+  color:var(--gold2);
 }
 
-.mobile-menu{
+.menu-btn{
   display:none;
 }
 
+/* ===== Hero ===== */
+
 .hero{
-  padding:70px 0 34px;
+  padding:72px 0 42px;
 }
 
 .hero-grid{
   display:grid;
-  grid-template-columns:1.35fr .65fr;
-  gap:22px;
+  grid-template-columns:1.25fr .75fr;
+  gap:26px;
   align-items:stretch;
 }
 
 .hero-main{
   padding:40px;
-  border:1px solid var(--line);
-  border-radius:26px;
+  border:1px solid rgba(61,165,255,.20);
+  border-radius:28px;
   background:
-    linear-gradient(145deg,
-      rgba(25,75,125,.45),
-      rgba(10,25,43,.82));
+    radial-gradient(circle at 15% 20%,rgba(61,165,255,.15),transparent 32%),
+    linear-gradient(135deg,rgba(18,34,56,.94),rgba(9,21,35,.98));
   box-shadow:var(--shadow);
   position:relative;
   overflow:hidden;
 }
 
-body.light .hero-main{
-  background:linear-gradient(145deg,#fff,#eaf4ff);
+[data-theme="light"] .hero-main{
+  background:
+    radial-gradient(circle at 15% 20%,rgba(61,165,255,.10),transparent 32%),
+    linear-gradient(135deg,#fff,#edf5fc);
 }
 
-.hero-main:before{
+.hero-main:after{
   content:"";
   position:absolute;
-  width:300px;
-  height:300px;
+  width:260px;
+  height:260px;
+  right:-100px;
+  top:-110px;
   border-radius:50%;
-  background:rgba(61,165,255,.15);
-  filter:blur(10px);
-  right:-140px;
-  top:-140px;
+  border:1px solid rgba(57,216,255,.18);
+  box-shadow:0 0 100px rgba(57,216,255,.08);
 }
 
 .eyebrow{
   display:inline-flex;
   align-items:center;
   gap:7px;
-  color:var(--gold2);
+  color:var(--cyan);
   font-size:12px;
-  padding:7px 10px;
-  border-radius:999px;
-  background:rgba(232,189,97,.08);
-  border:1px solid rgba(232,189,97,.18);
+  font-weight:800;
+  letter-spacing:1.5px;
+  margin-bottom:14px;
 }
 
 .hero h1{
-  margin:18px 0 12px;
-  font-size:clamp(36px,6vw,64px);
-  line-height:1;
+  font-size:clamp(36px,5vw,66px);
+  line-height:1.05;
   letter-spacing:-2px;
+  margin-bottom:18px;
 }
 
 .hero h1 span{
@@ -251,80 +286,84 @@ body.light .hero-main{
 }
 
 .hero-desc{
+  max-width:780px;
   color:var(--muted);
-  line-height:1.8;
-  max-width:700px;
+  font-size:16px;
+  margin-bottom:28px;
 }
 
 .search-box{
   display:flex;
-  margin-top:25px;
-  padding:6px;
-  background:rgba(0,0,0,.18);
-  border:1px solid var(--line);
-  border-radius:15px;
+  gap:10px;
+  max-width:760px;
 }
 
 .search-box input{
   flex:1;
   min-width:0;
-  border:0;
-  outline:0;
-  background:transparent;
+  padding:15px 18px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  outline:none;
+  background:rgba(0,0,0,.18);
   color:var(--text);
-  padding:13px 15px;
+}
+
+[data-theme="light"] .search-box input{
+  background:#fff;
+}
+
+.search-box input:focus{
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px rgba(61,165,255,.10);
 }
 
 .search-box button{
   border:0;
-  border-radius:11px;
-  padding:0 20px;
+  border-radius:14px;
+  padding:0 22px;
   color:#fff;
   background:linear-gradient(135deg,var(--blue2),var(--blue));
 }
 
-.chips{
+.quick-tags{
   display:flex;
-  flex-wrap:wrap;
   gap:8px;
+  flex-wrap:wrap;
   margin-top:15px;
 }
 
-.chip{
+.quick-tags button{
   border:1px solid var(--line);
-  background:var(--panel);
+  background:rgba(255,255,255,.035);
   color:var(--muted);
-  border-radius:999px;
   padding:7px 11px;
-  font-size:12px;
+  border-radius:999px;
 }
 
-.chip:hover{
-  color:var(--text);
-  border-color:rgba(61,165,255,.4);
+.quick-tags button:hover{
+  color:#fff;
+  border-color:var(--blue);
+  background:rgba(61,165,255,.10);
 }
 
 .hero-side{
   display:grid;
-  grid-template-rows:auto 1fr;
   gap:14px;
 }
 
-.stats-card,
-.mini-card{
+.stat-panel{
   border:1px solid var(--line);
-  background:var(--panel);
+  background:linear-gradient(145deg,var(--panel),var(--panel2));
   border-radius:22px;
+  padding:25px;
   box-shadow:var(--shadow);
 }
 
-.stats-card{
-  padding:25px;
-}
-
 .stat-number{
-  font-size:40px;
+  font-size:42px;
   font-weight:900;
+  color:var(--cyan);
 }
 
 .stat-label{
@@ -334,476 +373,563 @@ body.light .hero-main{
 
 .mini-grid{
   display:grid;
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:repeat(2,1fr);
   gap:10px;
+  margin-top:18px;
 }
 
-.mini-card{
-  padding:18px;
-  transition:.2s;
+.mini-item{
+  padding:13px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:rgba(255,255,255,.025);
 }
 
-.mini-card:hover{
-  transform:translateY(-3px);
-  border-color:rgba(61,165,255,.35);
+.mini-item b{
+  display:block;
+  margin-bottom:3px;
 }
 
-.mini-icon{
-  font-size:24px;
-}
-
-.mini-title{
-  margin-top:9px;
-  font-weight:800;
-  font-size:14px;
-}
-
-.mini-sub{
-  margin-top:4px;
-  font-size:11px;
+.mini-item span{
+  font-size:12px;
   color:var(--muted);
 }
 
-.section{
-  padding:35px 0;
-  scroll-margin-top:85px;
+/* ===== Sections ===== */
+
+section{
+  padding:42px 0;
+  scroll-margin-top:90px;
 }
 
 .section-head{
   display:flex;
   justify-content:space-between;
-  align-items:end;
   gap:20px;
-  margin-bottom:17px;
+  align-items:flex-end;
+  margin-bottom:20px;
 }
 
 .section-title{
-  font-size:25px;
+  font-size:27px;
   font-weight:900;
+  letter-spacing:-.5px;
+}
+
+.section-title span{
+  color:var(--blue);
 }
 
 .section-sub{
   color:var(--muted);
   font-size:13px;
-  margin-top:5px;
+  margin-top:3px;
 }
 
-.section-more{
-  color:var(--blue);
-  font-size:13px;
+.section-badge{
+  padding:7px 11px;
+  border-radius:999px;
+  background:rgba(61,165,255,.08);
+  color:var(--cyan);
+  border:1px solid rgba(61,165,255,.16);
+  font-size:12px;
+  white-space:nowrap;
 }
 
-.resource-grid{
+.grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:12px;
+  gap:14px;
 }
 
-.resource-card{
-  min-width:0;
-  position:relative;
-  padding:18px;
-  border-radius:17px;
+.grid-3{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+
+.card{
   border:1px solid var(--line);
   background:
-    linear-gradient(145deg,
-      color-mix(in srgb,var(--panel2) 92%,transparent),
-      var(--panel));
-  transition:.22s ease;
+    linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.015)),
+    var(--panel);
+  border-radius:18px;
+  padding:18px;
+  min-width:0;
+  transition:.25s;
+  position:relative;
   overflow:hidden;
 }
 
-.resource-card:after{
-  content:"";
-  position:absolute;
-  width:100px;
-  height:100px;
-  border-radius:50%;
-  background:rgba(61,165,255,.07);
-  right:-50px;
-  top:-50px;
-}
-
-.resource-card:hover{
+.card:hover{
   transform:translateY(-4px);
-  border-color:rgba(61,165,255,.42);
-  box-shadow:0 14px 35px rgba(0,0,0,.18);
-}
-
-.card-top{
-  display:flex;
-  align-items:center;
-  gap:11px;
+  border-color:rgba(61,165,255,.48);
+  box-shadow:
+    0 18px 40px rgba(0,0,0,.18),
+    0 0 28px rgba(61,165,255,.07);
 }
 
 .card-icon{
-  width:40px;
-  height:40px;
-  flex:none;
+  width:44px;
+  height:44px;
   display:grid;
   place-items:center;
-  border-radius:12px;
-  background:linear-gradient(145deg,var(--panel3),rgba(61,165,255,.14));
-  font-size:20px;
+  border-radius:13px;
+  font-size:22px;
+  background:linear-gradient(135deg,rgba(61,165,255,.15),rgba(57,216,255,.07));
+  margin-bottom:14px;
 }
 
 .card-title{
-  font-size:14px;
-  font-weight:800;
+  font-size:15px;
+  font-weight:850;
+  margin-bottom:5px;
 }
 
 .card-desc{
   color:var(--muted);
   font-size:12px;
-  line-height:1.6;
-  margin-top:11px;
   min-height:38px;
 }
 
-.card-tag{
-  display:inline-block;
-  margin-top:12px;
-  font-size:10px;
-  color:var(--blue);
-  padding:4px 7px;
-  border-radius:999px;
-  background:rgba(61,165,255,.08);
+.card-foot{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  margin-top:15px;
 }
 
-.feature-grid{
+.card-tag{
+  font-size:10px;
+  color:var(--cyan);
+  padding:4px 7px;
+  border-radius:7px;
+  background:rgba(57,216,255,.08);
+}
+
+.card-arrow{
+  color:var(--blue);
+  font-size:13px;
+}
+
+/* ===== Featured ===== */
+
+.featured{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:14px;
 }
 
 .feature-card{
-  min-height:165px;
-  border:1px solid var(--line);
-  border-radius:20px;
+  min-height:180px;
+  border-radius:22px;
   padding:24px;
+  border:1px solid var(--line);
+  position:relative;
+  overflow:hidden;
   background:
-    radial-gradient(circle at 90% 10%,rgba(61,165,255,.14),transparent 35%),
-    var(--panel);
-  transition:.2s;
+    radial-gradient(circle at 85% 15%,rgba(61,165,255,.20),transparent 30%),
+    linear-gradient(145deg,var(--panel2),var(--panel));
 }
 
-.feature-card:hover{
-  transform:translateY(-4px);
-  border-color:rgba(61,165,255,.4);
+.feature-card:nth-child(2){
+  background:
+    radial-gradient(circle at 85% 15%,rgba(232,189,97,.17),transparent 30%),
+    linear-gradient(145deg,var(--panel2),var(--panel));
 }
 
-.feature-icon{
-  font-size:30px;
+.feature-card:nth-child(3){
+  background:
+    radial-gradient(circle at 85% 15%,rgba(57,216,255,.17),transparent 30%),
+    linear-gradient(145deg,var(--panel2),var(--panel));
 }
 
-.feature-title{
-  margin-top:14px;
-  font-size:18px;
-  font-weight:900;
+.feature-card h3{
+  font-size:21px;
+  margin-bottom:8px;
 }
 
-.feature-desc{
+.feature-card p{
   color:var(--muted);
-  font-size:12px;
-  line-height:1.7;
-  margin-top:6px;
+  font-size:13px;
+  max-width:85%;
 }
 
-.notice{
-  border:1px solid rgba(232,189,97,.22);
-  background:rgba(232,189,97,.06);
-  color:var(--muted);
-  border-radius:14px;
-  padding:13px 15px;
-  margin-bottom:14px;
-  font-size:12px;
-  line-height:1.7;
+.feature-card .go{
+  position:absolute;
+  right:20px;
+  bottom:18px;
+  color:var(--cyan);
 }
 
-.notice strong{
-  color:var(--gold2);
-}
+/* ===== Special Panels ===== */
 
 .panel{
   border:1px solid var(--line);
-  border-radius:20px;
-  background:var(--panel);
-  padding:20px;
+  background:linear-gradient(145deg,var(--panel),var(--panel2));
+  border-radius:22px;
+  padding:22px;
 }
 
-.panel-title{
-  font-size:17px;
-  font-weight:900;
+.cloud-panel{
+  border-color:rgba(57,216,255,.18);
+  background:
+    radial-gradient(circle at 90% 10%,rgba(57,216,255,.11),transparent 30%),
+    linear-gradient(145deg,#0c1c2c,#102a40);
 }
 
-.panel-sub{
+[data-theme="light"] .cloud-panel{
+  background:
+    radial-gradient(circle at 90% 10%,rgba(57,216,255,.08),transparent 30%),
+    linear-gradient(145deg,#fff,#edf8fc);
+}
+
+.gold-panel{
+  border-color:rgba(232,189,97,.20);
+}
+
+/* ===== Forms ===== */
+
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+
+.field label{
   color:var(--muted);
   font-size:12px;
-  margin-top:5px;
 }
 
-.dual-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
-}
-
-.generator-row{
-  display:flex;
-  gap:8px;
-  margin-top:15px;
-}
-
-.generator-row input,
-.generator-row textarea{
-  flex:1;
-  min-width:0;
-  border:1px solid var(--line);
+.field input,
+.field select{
+  width:100%;
+  padding:11px 12px;
   border-radius:11px;
-  background:var(--panel2);
+  border:1px solid var(--line);
+  background:var(--bg2);
   color:var(--text);
-  padding:11px;
   outline:none;
 }
 
-.generator-row textarea{
-  resize:vertical;
-  min-height:120px;
+.field input:focus,
+.field select:focus{
+  border-color:var(--blue);
 }
 
-.action-btn{
-  border:0;
-  border-radius:11px;
-  background:linear-gradient(135deg,var(--blue2),var(--blue));
-  color:#fff;
-  padding:0 16px;
-  font-weight:700;
-}
-
-.secondary-btn{
-  border:1px solid var(--line);
-  border-radius:11px;
-  background:var(--panel2);
-  color:var(--text);
-  padding:9px 13px;
-}
-
-.action-btn:hover,
-.secondary-btn:hover{
-  filter:brightness(1.08);
-}
-
-.password-options{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:8px;
-  margin-top:13px;
-}
-
-.option{
+.form-actions{
   display:flex;
-  align-items:center;
   gap:8px;
-  color:var(--muted);
-  font-size:12px;
-}
-
-.option input{
-  accent-color:var(--blue);
-}
-
-.range-wrap{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin-top:12px;
-  color:var(--muted);
-  font-size:12px;
-}
-
-.range-wrap input{
-  flex:1;
-  accent-color:var(--blue);
-}
-
-.identity-output{
+  flex-wrap:wrap;
   margin-top:15px;
+}
+
+.result-box{
+  margin-top:15px;
+  border:1px dashed var(--line);
+  background:rgba(0,0,0,.12);
+  border-radius:14px;
+  padding:15px;
+}
+
+.result-row{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
+  grid-template-columns:150px 1fr;
+  gap:10px;
+  padding:7px 0;
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.result-row:last-child{
+  border-bottom:0;
+}
+
+.result-row b{
+  color:var(--muted);
+  font-size:12px;
+}
+
+.result-row span{
+  word-break:break-word;
+}
+
+/* ===== Currency ===== */
+
+.currency-grid{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:15px;
+}
+
+.mode-switch{
+  display:flex;
+  gap:7px;
+  padding:4px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  width:max-content;
+  background:var(--bg2);
+  margin-bottom:15px;
+}
+
+.mode-switch button{
+  border:0;
+  border-radius:9px;
+  padding:8px 12px;
+  color:var(--muted);
+  background:transparent;
+}
+
+.mode-switch button.active{
+  color:#fff;
+  background:linear-gradient(135deg,var(--blue2),var(--blue));
+}
+
+[data-theme="light"] .mode-switch button.active{
+  color:#fff;
+}
+
+.convert-result{
+  margin-top:17px;
+  padding:18px;
+  border-radius:16px;
+  background:
+    linear-gradient(135deg,rgba(61,165,255,.09),rgba(57,216,255,.04));
+  border:1px solid rgba(61,165,255,.18);
+}
+
+.convert-result .big{
+  font-size:31px;
+  font-weight:900;
+  color:var(--cyan);
+}
+
+/* ===== Noise ===== */
+
+.noise-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
+.noise-presets{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
   gap:9px;
 }
 
-.identity-item{
-  padding:11px;
-  background:var(--panel2);
+.noise-btn{
   border:1px solid var(--line);
-  border-radius:11px;
+  background:var(--panel2);
+  color:var(--text);
+  padding:13px 8px;
+  border-radius:12px;
 }
 
-.identity-label{
-  font-size:10px;
+.noise-btn.active{
+  border-color:var(--cyan);
+  background:rgba(57,216,255,.10);
+  color:var(--cyan);
+}
+
+.noise-status{
+  margin-top:15px;
+  padding:14px;
+  border-radius:14px;
+  background:rgba(57,216,255,.06);
   color:var(--muted);
 }
 
-.identity-value{
-  font-size:13px;
-  margin-top:4px;
-  word-break:break-all;
+.range{
+  width:100%;
 }
 
-.test-badge{
-  display:inline-block;
-  color:var(--green);
-  border:1px solid rgba(56,217,138,.25);
-  background:rgba(56,217,138,.06);
-  padding:4px 7px;
-  border-radius:999px;
-  font-size:10px;
-  margin-top:10px;
-}
+/* ===== Weather ===== */
 
 .weather-box{
-  display:grid;
-  grid-template-columns:1fr auto;
-  gap:15px;
-  align-items:center;
+  min-height:210px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
 }
 
-.weather-temp{
-  font-size:44px;
-  font-weight:900;
+.weather-main{
+  display:flex;
+  align-items:center;
+  gap:18px;
 }
 
 .weather-icon{
   font-size:58px;
 }
 
-.weather-meta{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-top:10px;
-}
-
-.weather-pill{
-  padding:6px 9px;
-  border-radius:9px;
-  background:var(--panel2);
-  color:var(--muted);
-  font-size:11px;
-}
-
-.market-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-  margin-top:13px;
-}
-
-.market-card{
-  border:1px solid var(--line);
-  border-radius:13px;
-  background:var(--panel2);
-  padding:14px;
-}
-
-.market-name{
-  color:var(--muted);
-  font-size:11px;
-}
-
-.market-price{
-  font-size:19px;
+.weather-temp{
+  font-size:43px;
   font-weight:900;
-  margin-top:6px;
 }
 
-.live-grid{
+.weather-city{
+  color:var(--muted);
+}
+
+/* ===== Telegram ===== */
+
+.tg-grid{
   display:grid;
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:repeat(4,1fr);
   gap:14px;
 }
 
-.telegram-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:11px;
-}
-
 .tg-card{
-  border:1px solid var(--line);
-  background:var(--panel);
-  border-radius:15px;
-  padding:16px;
-  transition:.2s;
+  padding:18px;
+  border-radius:18px;
+  border:1px solid rgba(61,165,255,.18);
+  background:
+    linear-gradient(145deg,rgba(61,165,255,.08),rgba(255,255,255,.02)),
+    var(--panel);
 }
 
-.tg-card:hover{
-  transform:translateY(-3px);
-  border-color:rgba(61,165,255,.38);
-}
-
-.tg-icon{
-  font-size:22px;
-}
-
-.tg-title{
-  margin-top:8px;
-  font-size:13px;
-  font-weight:800;
+.tg-card .tg-icon{
+  font-size:25px;
+  margin-bottom:10px;
 }
 
 .tg-handle{
-  color:var(--blue);
-  font-size:11px;
-  margin-top:4px;
+  color:var(--cyan);
+  font-weight:800;
 }
 
-footer{
-  margin-top:45px;
-  border-top:1px solid var(--line);
-  padding:35px 0 55px;
+.tg-desc{
+  font-size:12px;
+  color:var(--muted);
+  margin-top:5px;
+}
+
+/* ===== Games ===== */
+
+.game-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:12px;
+}
+
+.game-card{
+  border:1px solid var(--line);
+  background:var(--panel);
+  border-radius:18px;
+  padding:18px;
+  transition:.2s;
+}
+
+.game-card:hover{
+  transform:translateY(-3px);
+  border-color:var(--gold);
+}
+
+.game-card h3{
+  font-size:15px;
+  margin-bottom:6px;
+}
+
+.game-card p{
   color:var(--muted);
   font-size:12px;
 }
 
-.footer-grid{
-  display:flex;
-  justify-content:space-between;
-  gap:20px;
+/* ===== Notice ===== */
+
+.notice{
+  padding:13px 15px;
+  border-radius:13px;
+  background:rgba(232,189,97,.07);
+  border:1px solid rgba(232,189,97,.18);
+  color:var(--muted);
+  font-size:12px;
+  margin-bottom:15px;
 }
+
+.notice strong{
+  color:var(--gold2);
+}
+
+/* ===== Footer ===== */
+
+footer{
+  padding:40px 0 70px;
+  border-top:1px solid var(--line);
+  margin-top:30px;
+}
+
+.footer-grid{
+  display:grid;
+  grid-template-columns:1.5fr 1fr 1fr 1fr;
+  gap:30px;
+}
+
+.footer-title{
+  font-weight:900;
+  margin-bottom:10px;
+}
+
+.footer-links{
+  display:grid;
+  gap:6px;
+}
+
+.footer-links a{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.footer-links a:hover{
+  color:var(--cyan);
+}
+
+.copyright{
+  margin-top:30px;
+  padding-top:20px;
+  border-top:1px solid var(--line);
+  color:var(--muted);
+  font-size:12px;
+}
+
+/* ===== Floating ===== */
 
 .float-tg{
   position:fixed;
   right:22px;
   bottom:22px;
   z-index:900;
-  display:flex;
-  align-items:center;
-  gap:8px;
-  padding:12px 16px;
-  border-radius:999px;
+  width:54px;
+  height:54px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:linear-gradient(135deg,#1689e7,#2bb9ff);
   color:#fff;
-  background:linear-gradient(135deg,#168bd8,#2aaef5);
-  box-shadow:0 12px 35px rgba(20,140,220,.35);
-  font-size:12px;
-  font-weight:800;
+  font-size:23px;
+  box-shadow:0 12px 35px rgba(0,136,255,.35);
 }
 
-.float-tg:hover{
-  transform:translateY(-2px);
-}
+/* ===== Modal ===== */
 
 .modal{
   position:fixed;
   inset:0;
-  z-index:3000;
-  background:rgba(0,0,0,.72);
-  backdrop-filter:blur(8px);
+  z-index:2000;
   display:none;
   align-items:center;
   justify-content:center;
   padding:20px;
+  background:rgba(0,0,0,.70);
+  backdrop-filter:blur(10px);
 }
 
 .modal.show{
@@ -811,334 +937,299 @@ footer{
 }
 
 .modal-box{
-  width:min(820px,100%);
+  width:min(850px,100%);
   max-height:90vh;
   overflow:auto;
-  border:1px solid var(--line);
-  background:var(--panel);
   border-radius:22px;
-  box-shadow:var(--shadow);
+  border:1px solid var(--line);
+  background:linear-gradient(145deg,var(--panel),var(--panel2));
+  box-shadow:0 30px 100px rgba(0,0,0,.5);
+  padding:22px;
 }
 
 .modal-head{
-  position:sticky;
-  top:0;
-  z-index:2;
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  padding:16px 18px;
-  border-bottom:1px solid var(--line);
-  background:var(--panel);
-}
-
-.modal-title{
-  font-weight:900;
+  justify-content:space-between;
+  gap:15px;
+  margin-bottom:15px;
 }
 
 .modal-close{
-  border:0;
+  width:36px;
+  height:36px;
+  border:1px solid var(--line);
+  border-radius:10px;
   background:var(--panel2);
   color:var(--text);
-  width:34px;
-  height:34px;
-  border-radius:10px;
 }
 
-.modal-body{
-  padding:18px;
+/* Search results */
+
+.search-result-list{
+  display:grid;
+  gap:9px;
+  margin-top:15px;
 }
 
 .search-result{
-  display:grid;
-  grid-template-columns:42px 1fr auto;
+  display:flex;
   align-items:center;
+  justify-content:space-between;
   gap:12px;
   padding:13px;
   border:1px solid var(--line);
-  background:var(--panel2);
   border-radius:13px;
-  margin-top:8px;
+  background:rgba(255,255,255,.025);
 }
 
-.search-result-icon{
-  width:42px;
-  height:42px;
+.search-result:hover{
+  border-color:var(--blue);
+}
+
+/* ===== Game ===== */
+
+.game-stage{
   display:grid;
   place-items:center;
-  border-radius:11px;
-  background:var(--panel3);
-  font-size:20px;
-}
-
-.search-result-title{
-  font-weight:800;
-  font-size:13px;
-}
-
-.search-result-desc{
-  color:var(--muted);
-  font-size:11px;
-  margin-top:4px;
-}
-
-.open-link{
-  padding:8px 11px;
-  background:linear-gradient(135deg,var(--blue2),var(--blue));
-  color:#fff;
-  border-radius:9px;
-  font-size:11px;
-}
-
-.game-tabs{
-  display:flex;
-  flex-wrap:wrap;
-  gap:7px;
-  margin-bottom:14px;
-}
-
-.game-tab{
-  border:1px solid var(--line);
-  background:var(--panel2);
-  color:var(--muted);
-  padding:8px 11px;
-  border-radius:9px;
-  font-size:12px;
-}
-
-.game-tab.active{
-  color:#fff;
-  background:var(--blue2);
-}
-
-.game-area{
-  min-height:300px;
-  display:grid;
-  place-items:center;
-  border:1px solid var(--line);
-  border-radius:15px;
-  background:var(--bg2);
-  padding:20px;
-}
-
-.game2048{
-  width:300px;
+  min-height:380px;
 }
 
 .board2048{
+  width:min(360px,90vw);
+  aspect-ratio:1;
+  background:#172338;
+  border-radius:14px;
+  padding:10px;
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:7px;
-  background:#1d3045;
-  padding:7px;
-  border-radius:10px;
+  gap:10px;
 }
 
-.tile{
-  aspect-ratio:1;
+.tile2048{
   display:grid;
   place-items:center;
-  border-radius:7px;
-  background:#27415b;
-  font-size:20px;
+  border-radius:10px;
+  background:#26344b;
   font-weight:900;
+  font-size:24px;
 }
+
+.tile2048[data-v="2"]{background:#eee4da;color:#776e65}
+.tile2048[data-v="4"]{background:#ede0c8;color:#776e65}
+.tile2048[data-v="8"]{background:#f2b179;color:#fff}
+.tile2048[data-v="16"]{background:#f59563;color:#fff}
+.tile2048[data-v="32"]{background:#f67c5f;color:#fff}
+.tile2048[data-v="64"]{background:#f65e3b;color:#fff}
+.tile2048[data-v="128"]{background:#edcf72;color:#fff}
+.tile2048[data-v="256"]{background:#edcc61;color:#fff}
+.tile2048[data-v="512"]{background:#edc850;color:#fff}
+.tile2048[data-v="1024"]{background:#edc53f;color:#fff}
+.tile2048[data-v="2048"]{background:#edc22e;color:#fff}
 
 .snake-wrap{
   text-align:center;
 }
 
 #snakeCanvas{
-  border:1px solid var(--line);
-  background:#07101c;
   max-width:100%;
+  background:#06111d;
+  border:1px solid var(--line);
+  border-radius:14px;
 }
 
 .reaction-box{
   width:min(500px,100%);
-  height:220px;
+  height:260px;
+  border-radius:20px;
   display:grid;
   place-items:center;
-  border-radius:18px;
-  background:#20354c;
-  color:#fff;
-  font-weight:900;
-}
-
-.typing-box{
-  width:min(600px,100%);
-}
-
-.typing-text{
-  line-height:2;
-  font-size:18px;
-  margin-bottom:15px;
-}
-
-.typing-input{
-  width:100%;
-  padding:13px;
+  background:#172338;
   border:1px solid var(--line);
-  border-radius:11px;
-  background:var(--panel2);
+  font-size:24px;
+  font-weight:900;
+  user-select:none;
+}
+
+.typing-box input{
+  width:100%;
+  padding:15px;
+  border-radius:13px;
+  border:1px solid var(--line);
+  background:var(--bg2);
   color:var(--text);
-  outline:0;
+  margin-top:12px;
 }
 
 .memory-grid{
   display:grid;
-  grid-template-columns:repeat(4,60px);
-  gap:8px;
+  grid-template-columns:repeat(4,70px);
+  gap:10px;
+  justify-content:center;
 }
 
 .memory-card{
-  width:60px;
-  height:60px;
-  border:0;
-  border-radius:10px;
-  background:#24405d;
-  color:transparent;
-  font-size:22px;
-}
-
-.memory-card.open{
-  color:#fff;
-  background:#167ecb;
-}
-
-.toast{
-  position:fixed;
-  left:50%;
-  bottom:28px;
-  transform:translateX(-50%) translateY(20px);
-  opacity:0;
-  pointer-events:none;
-  z-index:5000;
-  background:#101d2d;
-  color:#fff;
+  width:70px;
+  height:70px;
   border:1px solid var(--line);
-  padding:11px 15px;
-  border-radius:11px;
-  font-size:12px;
-  transition:.25s;
+  background:#172338;
+  color:transparent;
+  border-radius:12px;
+  font-size:24px;
 }
 
-.toast.show{
-  opacity:1;
-  transform:translateX(-50%) translateY(0);
+.memory-card.flipped,
+.memory-card.matched{
+  color:#fff;
+  background:#197bd5;
 }
 
-.hidden{
-  display:none!important;
-}
+/* ===== Responsive ===== */
 
-@media(max-width:1050px){
-  .nav-links{display:none}
-  .mobile-menu{display:block}
-  .nav-actions{margin-left:auto}
-  .hero-grid{grid-template-columns:1fr}
-  .resource-grid{grid-template-columns:repeat(3,1fr)}
-  .telegram-grid{grid-template-columns:repeat(3,1fr)}
-}
-
-@media(max-width:760px){
-  .container{
-    width:min(100% - 22px,1180px);
+@media(max-width:1100px){
+  .grid{
+    grid-template-columns:repeat(3,1fr);
   }
 
-  .nav-inner{
-    height:60px;
+  .tg-grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .game-grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .footer-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:900px){
+  .hero-grid,
+  .currency-grid,
+  .noise-grid{
+    grid-template-columns:1fr;
+  }
+
+  .featured{
+    grid-template-columns:1fr;
+  }
+
+  .nav-links{
+    display:none;
+  }
+
+  .nav-links.mobile-show{
+    display:grid;
+    position:absolute;
+    left:4%;
+    right:4%;
+    top:68px;
+    padding:12px;
+    border:1px solid var(--line);
+    border-radius:16px;
+    background:var(--panel);
+    box-shadow:var(--shadow);
+  }
+
+  .menu-btn{
+    display:block;
+  }
+
+  .nav-actions .contact-btn{
+    display:none;
+  }
+
+  .form-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:700px){
+  .hero{
+    padding-top:40px;
+  }
+
+  .hero-main{
+    padding:27px;
+  }
+
+  .hero h1{
+    font-size:39px;
+  }
+
+  .search-box{
+    flex-direction:column;
+  }
+
+  .search-box button{
+    padding:13px;
+  }
+
+  .grid,
+  .grid-3,
+  .tg-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .game-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .result-row{
+    grid-template-columns:1fr;
+    gap:2px;
+  }
+
+  .section-head{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .footer-grid{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+@media(max-width:480px){
+  .container{
+    width:94%;
   }
 
   .logo-sub{
     display:none;
   }
 
-  .nav-btn:not(.primary),
-  .nav-actions .theme-btn{
-    display:none;
+  .nav{
+    gap:10px;
   }
 
-  .hero{
-    padding-top:35px;
+  .nav-actions{
+    margin-left:auto;
   }
 
-  .hero-main{
-    padding:26px 20px;
+  .grid,
+  .grid-3,
+  .tg-grid,
+  .game-grid{
+    grid-template-columns:1fr;
   }
 
-  .hero h1{
-    font-size:42px;
-  }
-
-  .resource-grid{
+  .noise-presets{
     grid-template-columns:repeat(2,1fr);
-  }
-
-  .feature-grid{
-    grid-template-columns:1fr;
-  }
-
-  .dual-grid,
-  .live-grid{
-    grid-template-columns:1fr;
-  }
-
-  .telegram-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .market-grid{
-    grid-template-columns:1fr;
-  }
-
-  .identity-output{
-    grid-template-columns:1fr;
   }
 
   .footer-grid{
-    flex-direction:column;
-  }
-}
-
-@media(max-width:480px){
-  .resource-grid{
     grid-template-columns:1fr;
   }
 
-  .telegram-grid{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .search-box{
-    flex-direction:column;
-    gap:7px;
-    background:transparent;
-    border:0;
-    padding:0;
-  }
-
-  .search-box input{
-    border:1px solid var(--line);
-    border-radius:12px;
-    background:var(--panel);
-  }
-
-  .search-box button{
-    height:45px;
-  }
-
-  .generator-row{
-    flex-direction:column;
-  }
-
-  .generator-row .action-btn{
-    height:43px;
-  }
-
   .float-tg{
-    right:12px;
-    bottom:12px;
+    right:15px;
+    bottom:15px;
   }
 }
 </style>
@@ -1146,874 +1237,1644 @@ footer{
 
 <body>
 
-<header class="nav">
-  <div class="container nav-inner">
+<header>
+  <div class="container nav">
 
-    <a class="logo" href="#home">
+    <a class="logo" href="#top">
       <div class="logo-mark">资</div>
-      <div class="logo-text">
-        <span>资源公社</span>
-        <span class="logo-sub">RESOURCE HUB</span>
+      <div>
+        <div class="logo-text">资源公社</div>
+        <div class="logo-sub">RESOURCE HUB</div>
       </div>
     </a>
 
-    <nav class="nav-links">
-      <a href="#cloud">☁️ 网盘</a>
-      <a href="#ai">🤖 AI</a>
-      <a href="#images">🖼️ 图库</a>
-      <a href="#tools">🛠️ 工具</a>
-      <a href="#video">🎬 视频</a>
-      <a href="#live">🌍 实况</a>
-      <a href="#playground">🎮 Play</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#tools">工具</a>
+      <a href="#cloud">网盘</a>
+      <a href="#ai">AI</a>
+      <a href="#image">图片</a>
+      <a href="#mobile">手机</a>
+      <a href="#live">实时</a>
+      <a href="#search">搜索</a>
+      <a href="#playground">Playground</a>
     </nav>
 
     <div class="nav-actions">
-      <a class="nav-btn" href="https://t.me/MR518" target="_blank" rel="noopener">@MR518</a>
-      <a class="nav-btn primary" href="https://t.me/ZYGS123" target="_blank" rel="noopener">资源公社</a>
-      <button class="nav-btn theme-btn" id="themeBtn" onclick="toggleTheme()">☀️</button>
-      <button class="nav-btn mobile-menu" onclick="openMobileMenu()">☰</button>
+      <a class="btn contact-btn" href="https://t.me/MR518" target="_blank" rel="noopener noreferrer">
+        @MR518
+      </a>
+
+      <a class="btn btn-gold" href="https://t.me/ZYGS123" target="_blank" rel="noopener noreferrer">
+        资源公社
+      </a>
+
+      <button class="btn menu-btn" id="menuBtn">☰</button>
+
+      <button class="btn" id="themeBtn" title="切换主题">☀️</button>
     </div>
 
   </div>
 </header>
 
-<main id="home">
+<main id="top">
+
+<!-- HERO -->
 
 <section class="hero">
-<div class="container">
-<div class="hero-grid">
+  <div class="container hero-grid">
 
-  <div class="hero-main">
+    <div class="hero-main">
 
-    <div class="eyebrow">🌏 中国 & 亚洲用户优先 · 全球资源</div>
+      <div class="eyebrow">✦ RESOURCE HUB · ONLINE TOOLS</div>
 
-    <h1>
-      资源公社<br>
-      <span>RESOURCE HUB</span>
-    </h1>
+      <h1>
+        一个真正好用的<br>
+        <span>全球资源导航中心</span>
+      </h1>
 
-    <div class="hero-desc">
-      一个面向中国及亚洲用户的全球在线资源中心。
-      云盘、AI、图片、视频、音乐、开发工具、实用工具、全球实时信息，
-      尽可能做到打开即用、点击直达。
+      <p class="hero-desc">
+        在线工具、AI、网盘、图片设计、手机工具、开发资源、
+        测试数据、实时信息、音乐影视、搜索入口与 Telegram 资源，
+        尽可能集中在一个页面。
+      </p>
+
+      <div class="search-box">
+        <input
+          id="globalSearch"
+          type="search"
+          placeholder="搜索工具、网盘、AI、图片、开发资源……"
+          autocomplete="off"
+        >
+        <button id="globalSearchBtn">🔎 搜索</button>
+      </div>
+
+      <div class="quick-tags">
+        <button data-search="AI">AI</button>
+        <button data-search="网盘">网盘</button>
+        <button data-search="图片">图片</button>
+        <button data-search="PDF">PDF</button>
+        <button data-search="翻译">翻译</button>
+        <button data-search="开发">开发</button>
+        <button data-search="手机">手机</button>
+        <button data-search="磁力">搜索</button>
+      </div>
+
     </div>
 
-    <div class="search-box">
-      <input id="globalSearch"
-             type="search"
-             placeholder="搜索云盘、AI、PS、天气、邮箱、UUID……">
-      <button onclick="globalSearch()">🔎 搜索</button>
-    </div>
+    <div class="hero-side">
 
-    <div class="chips">
-      <button class="chip" onclick="quickSearch('网盘')">☁️ 网盘</button>
-      <button class="chip" onclick="quickSearch('AI')">🤖 AI</button>
-      <button class="chip" onclick="quickSearch('图片')">🖼️ 图片</button>
-      <button class="chip" onclick="quickSearch('视频')">🎬 视频</button>
-      <button class="chip" onclick="quickSearch('邮箱')">📧 邮箱</button>
-      <button class="chip" onclick="quickSearch('开发')">💻 开发</button>
-      <button class="chip" onclick="quickSearch('音乐')">🎵 音乐</button>
-      <button class="chip" onclick="quickSearch('工具')">🛠️ 工具</button>
-    </div>
+      <div class="stat-panel">
+        <div class="stat-number" id="resourceCount">0+</div>
+        <div class="stat-label">已收录在线资源</div>
 
+        <div class="mini-grid">
+          <div class="mini-item">
+            <b>☁️ 云盘</b>
+            <span>主流网页版入口</span>
+          </div>
+
+          <div class="mini-item">
+            <b>🤖 AI</b>
+            <span>聊天 / 搜索 / 创作</span>
+          </div>
+
+          <div class="mini-item">
+            <b>🛠 工具</b>
+            <span>日常效率工具</span>
+          </div>
+
+          <div class="mini-item">
+            <b>🎮 Play</b>
+            <span>小游戏与互动工具</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stat-panel">
+        <b>🌐 RESOURCE HUB</b>
+        <p class="muted small" style="margin-top:7px">
+          不只是收藏网址，更希望把常用资源真正做成一个可以长期使用的工具入口。
+        </p>
+
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:15px">
+          <span class="card-tag">在线工具</span>
+          <span class="card-tag">AI</span>
+          <span class="card-tag">Cloud</span>
+          <span class="card-tag">Mobile</span>
+          <span class="card-tag">Developer</span>
+        </div>
+      </div>
+
+    </div>
   </div>
+</section>
 
-  <div class="hero-side">
 
-    <div class="stats-card">
-      <div class="stat-number" id="resourceCount">0+</div>
-      <div class="stat-label">在线资源 & 实用工具</div>
+<!-- FEATURED -->
+
+<section>
+  <div class="container">
+
+    <div class="section-head">
+      <div>
+        <div class="section-title">精选 <span>入口</span></div>
+        <div class="section-sub">最常用的几个资源中心</div>
+      </div>
     </div>
 
-    <div class="mini-grid">
-      <a href="#cloud" class="mini-card">
-        <div class="mini-icon">☁️</div>
-        <div class="mini-title">在线网盘</div>
-        <div class="mini-sub">中国 + 国际</div>
+    <div class="featured">
+
+      <a class="feature-card" href="#cloud">
+        <h3>☁️ 在线网盘中心</h3>
+        <p>
+          Google Drive、OneDrive、Dropbox、MEGA、iCloud、
+          pCloud、Box、Proton Drive 等网页版入口。
+        </p>
+        <div class="go">进入 →</div>
       </a>
 
-      <a href="#tools" class="mini-card">
-        <div class="mini-icon">🛠️</div>
-        <div class="mini-title">实用工具</div>
-        <div class="mini-sub">打开即用</div>
+      <a class="feature-card" href="#test">
+        <h3>🧪 测试数据中心</h3>
+        <p>
+          美国虚构测试身份、随机测试数据、UUID、JSON、
+          Mock 数据等开发测试资源。
+        </p>
+        <div class="go">进入 →</div>
       </a>
 
-      <a href="#images" class="mini-card">
-        <div class="mini-icon">🖼️</div>
-        <div class="mini-title">图库设计</div>
-        <div class="mini-sub">图片 / PS / Logo</div>
+      <a class="feature-card" href="#noise">
+        <h3>🎧 白噪音中心</h3>
+        <p>
+          雨声、雷雨、森林、海浪、咖啡厅、棕噪音，
+          网页直接播放。
+        </p>
+        <div class="go">进入 →</div>
       </a>
 
-      <a href="#live" class="mini-card">
-        <div class="mini-icon">🌍</div>
-        <div class="mini-title">全球实时</div>
-        <div class="mini-sub">天气 / 航班 / 摄像头</div>
-      </a>
     </div>
-
   </div>
-
-</div>
-</div>
 </section>
 
-<section class="section">
-<div class="container">
-
-<div class="section-head">
-  <div>
-    <div class="section-title">🔥 快速入口</div>
-    <div class="section-sub">最常用的在线服务</div>
-  </div>
-</div>
-
-<div class="feature-grid">
-
-  <a class="feature-card" href="#cloud">
-    <div class="feature-icon">☁️</div>
-    <div class="feature-title">在线网盘中心</div>
-    <div class="feature-desc">
-      百度、阿里、夸克、天翼、移动、微云，以及 Google Drive、OneDrive、MEGA 等。
-    </div>
-  </a>
-
-  <a class="feature-card" href="#tools">
-    <div class="feature-icon">🛠️</div>
-    <div class="feature-title">在线工具箱</div>
-    <div class="feature-desc">
-      临时邮箱、测试数据、密码、UUID、翻译、取文件、截图、九宫格等。
-    </div>
-  </a>
-
-  <a class="feature-card" href="#creative">
-    <div class="feature-icon">🎨</div>
-    <div class="feature-title">创意工作台</div>
-    <div class="feature-desc">
-      在线 PS、Logo、AI 图片放大、无版权图库、以图搜图。
-    </div>
-  </a>
-
-</div>
-
-</div>
-</section>
-
-<!-- CLOUD -->
-<section class="section" id="cloud">
-<div class="container">
-
-<div class="section-head">
-  <div>
-    <div class="section-title">☁️ 在线网盘中心</div>
-    <div class="section-sub">中国 / 亚洲常用网盘优先，点击直接进入网页版</div>
-  </div>
-</div>
-
-<div class="notice">
-  <strong>在线访问：</strong>
-  这里全部采用网页版入口。点击卡片即可进入对应服务，不需要从本网站下载任何客户端。
-</div>
-
-<div class="resource-grid" id="cloudGrid"></div>
-
-</div>
-</section>
-
-<!-- AI -->
-<section class="section" id="ai">
-<div class="container">
-
-<div class="section-head">
-  <div>
-    <div class="section-title">🤖 AI 工具中心</div>
-    <div class="section-sub">聊天、搜索、写作、代码、图片与综合 AI</div>
-  </div>
-</div>
-
-<div class="resource-grid" id="aiGrid"></div>
-
-</div>
-</section>
-
-<!-- IMAGES -->
-<section class="section" id="images">
-<div class="container">
-
-<div class="section-head">
-  <div>
-    <div class="section-title">🖼️ 无版权图库 & 以图搜图</div>
-    <div class="section-sub">素材、图片搜索、反向图片搜索</div>
-  </div>
-</div>
-
-<div class="resource-grid" id="imageGrid"></div>
-
-</div>
-</section>
-
-<!-- CREATIVE -->
-<section class="section" id="creative">
-<div class="container">
-
-<div class="section-head">
-  <div>
-    <div class="section-title">🎨 在线设计工作台</div>
-    <div class="section-sub">不用安装软件，浏览器直接打开</div>
-  </div>
-</div>
-
-<div class="resource-grid" id="creativeGrid"></div>
-
-</div>
-</section>
 
 <!-- TOOLS -->
-<section class="section" id="tools">
-<div class="container">
 
-<div class="section-head">
-  <div>
-    <div class="section-title">🛠️ 实用工具箱</div>
-    <div class="section-sub">大量工具直接在线使用</div>
+<section id="tools">
+  <div class="container">
+
+    <div class="section-head">
+      <div>
+        <div class="section-title">🛠 在线 <span>工具</span></div>
+        <div class="section-sub">日常办公、转换、翻译、文件处理与实用工具</div>
+      </div>
+      <div class="section-badge">常用工具</div>
+    </div>
+
+    <div class="grid" id="toolsGrid"></div>
+
   </div>
-</div>
-
-<div class="resource-grid" id="toolsGrid"></div>
-
-</div>
 </section>
+
+
+<!-- CLOUD -->
+
+<section id="cloud">
+  <div class="container">
+
+    <div class="section-head">
+      <div>
+        <div class="section-title">☁️ 在线 <span>网盘</span></div>
+        <div class="section-sub">全部为网页版入口，点击直接打开，不提供下载按钮</div>
+      </div>
+      <div class="section-badge">WEB CLOUD</div>
+    </div>
+
+    <div class="panel cloud-panel">
+      <div class="grid" id="cloudGrid"></div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- AI -->
+
+<section id="ai">
+  <div class="container">
+
+    <div class="section-head">
+      <div>
+        <div class="section-title">🤖 AI <span>工具中心</span></div>
+        <div class="section-sub">聊天、搜索、研究、写作、代码与综合 AI</div>
+      </div>
+      <div class="section-badge">AI HUB</div>
+    </div>
+
+    <div class="grid" id="aiGrid"></div>
+
+  </div>
+</section>
+
+
+<!-- IMAGE -->
+
+<section id="image">
+  <div class="container">
+
+    <div class="section-head">
+      <div>
+        <div class="section-title">🎨 图片 / <span>设计</span></div>
+        <div class="section-sub">在线 PS、LOGO、图库、搜图、抠图、图片放大与拼接</div>
+      </div>
+      <div class="section-badge">CREATIVE</div>
+    </div>
+
+    <div class="grid" id="imageGrid"></div>
+
+  </div>
+</section>
+
+
+<!-- MOBILE -->
+
+<section id="mobile">
+  <div class="container">
+
+    <div class="section-head">
+      <div>
+        <div class="section-title">📱 Android / <span>iOS</span></div>
+        <div class="section-sub">安卓与苹果常用开发、管理、测试和在线工具</div>
+      </div>
+      <div class="section-badge">MOBILE</div>
+    </div>
+
+    <div class="grid-3">
+
+      <div class="panel">
+        <h3 style="margin-bottom:15px">🤖 Android</h3>
+        <div class="grid" id="androidGrid"></div>
+      </div>
+
+      <div class="panel">
+        <h3 style="margin-bottom:15px">🍎 iOS</h3>
+        <div class="grid" id="iosGrid"></div>
+      </div>
+
+      <div class="panel">
+        <h3 style="margin-bottom:15px">🔐 安全 / 检测</h3>
+        <div class="grid" id="mobileSecurityGrid"></div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
 
 <!-- TEST DATA -->
-<section class="section" id="identity">
-<div class="container">
 
-<div class="section-head">
-  <div>
-    <div class="section-title">🇺🇸 身份 & 测试数据</div>
-    <div class="section-sub">开发、UI、接口、数据库测试工具</div>
+<section id="test">
+  <div class="container">
+
+    <div class="section-head">
+      <div>
+        <div class="section-title">🧪 测试数据 / <span>开发工具</span></div>
+        <div class="section-sub">用于开发、测试、接口调试和原型制作</div>
+      </div>
+      <div class="section-badge">TEST DATA</div>
+    </div>
+
+    <div class="notice">
+      <strong>⚠️ 测试数据说明：</strong>
+      本站生成的身份资料全部为虚构测试数据，不对应真实个人。
+      不得用于实名认证、开户、冒用身份、绕过平台验证或其他违法用途。
+    </div>
+
+    <div class="panel gold-panel">
+
+      <div class="form-grid">
+
+        <div class="field">
+          <label>数据类型</label>
+          <select id="identityType">
+            <option value="us">美国测试身份</option>
+            <option value="global">全球随机测试身份</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>性别</label>
+          <select id="identityGender">
+            <option value="random">随机</option>
+            <option value="male">男性</option>
+            <option value="female">女性</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>生成数量</label>
+          <select id="identityCount">
+            <option value="1">1 条</option>
+            <option value="3">3 条</option>
+            <option value="5">5 条</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>操作</label>
+          <button class="btn btn-primary" id="generateIdentity">
+            🎲 生成测试数据
+          </button>
+        </div>
+
+      </div>
+
+      <div id="identityResult" class="result-box">
+        <div class="muted small">点击“生成测试数据”开始。</div>
+      </div>
+
+      <div class="form-actions">
+        <button class="btn" id="copyIdentity">📋 复制全部</button>
+      </div>
+
+    </div>
+
+    <div class="grid" id="devGrid" style="margin-top:15px"></div>
+
   </div>
-</div>
-
-<div class="notice">
-  <strong>测试用途：</strong>
-  本区生成的身份与号码均为合成测试数据，仅用于开发、UI、接口和数据库测试，
-  不用于冒充真实身份、实名认证或绕过平台验证。
-</div>
-
-<div class="dual-grid">
-
-  <div class="panel">
-    <div class="panel-title">🇺🇸 美国测试身份生成器</div>
-    <div class="panel-sub">生成明确用于开发测试的合成数据</div>
-
-    <div class="identity-output" id="identityOutput"></div>
-
-    <div style="display:flex;gap:8px;margin-top:13px">
-      <button class="action-btn" onclick="generateIdentity()">🎲 生成</button>
-      <button class="secondary-btn" onclick="copyIdentity()">📋 复制</button>
-    </div>
-
-    <div class="test-badge">TEST DATA · 非真实身份</div>
-  </div>
-
-  <div class="panel">
-    <div class="panel-title">🎲 随机 JSON 测试数据</div>
-    <div class="panel-sub">快速生成 API / 数据库测试 JSON</div>
-
-    <pre id="jsonOutput"
-         style="white-space:pre-wrap;background:var(--panel2);padding:14px;border-radius:11px;border:1px solid var(--line);font-size:11px;line-height:1.7;overflow:auto;min-height:160px"></pre>
-
-    <div style="display:flex;gap:8px">
-      <button class="action-btn" onclick="generateJSON()">生成 JSON</button>
-      <button class="secondary-btn" onclick="copyJSON()">复制</button>
-    </div>
-  </div>
-
-</div>
-
-<div class="dual-grid" style="margin-top:14px">
-
-  <div class="panel">
-    <div class="panel-title">🔐 密码生成器</div>
-    <div class="panel-sub">完全在浏览器本地生成</div>
-
-    <div class="range-wrap">
-      长度
-      <input id="passwordLength" type="range" min="8" max="64" value="20"
-             oninput="document.getElementById('passwordLengthValue').textContent=this.value">
-      <b id="passwordLengthValue">20</b>
-    </div>
-
-    <div class="password-options">
-      <label class="option"><input id="pwUpper" type="checkbox" checked> 大写</label>
-      <label class="option"><input id="pwLower" type="checkbox" checked> 小写</label>
-      <label class="option"><input id="pwNumber" type="checkbox" checked> 数字</label>
-      <label class="option"><input id="pwSymbol" type="checkbox" checked> 符号</label>
-    </div>
-
-    <div class="generator-row">
-      <input id="passwordOutput" readonly placeholder="点击生成密码">
-      <button class="action-btn" onclick="generatePassword()">生成</button>
-      <button class="secondary-btn" onclick="copyElement('passwordOutput')">复制</button>
-    </div>
-  </div>
-
-  <div class="panel">
-    <div class="panel-title">🆔 UUID 生成器</div>
-    <div class="panel-sub">UUID v4，浏览器本地生成</div>
-
-    <div class="generator-row">
-      <input id="uuidOutput" readonly placeholder="点击生成 UUID">
-      <button class="action-btn" onclick="generateUUID()">生成</button>
-      <button class="secondary-btn" onclick="copyElement('uuidOutput')">复制</button>
-    </div>
-
-    <div style="margin-top:15px;display:flex;gap:8px;flex-wrap:wrap">
-      <button class="secondary-btn" onclick="generateUsername()">👤 随机用户名</button>
-      <button class="secondary-btn" onclick="generateRandomString()">🔤 随机字符串</button>
-      <button class="secondary-btn" onclick="generateRandomNumber()">🔢 随机数字</button>
-    </div>
-
-    <div id="randomOutput"
-         style="margin-top:12px;color:var(--cyan);font-size:14px;word-break:break-all"></div>
-  </div>
-
-</div>
-
-</div>
 </section>
 
-<!-- VIDEO -->
-<section class="section" id="video">
-<div class="container">
-
-<div class="section-head">
-  <div>
-    <div class="section-title">🎬 视频工具</div>
-    <div class="section-sub">在线视频工具、转换、解析与媒体处理</div>
-  </div>
-</div>
-
-<div class="resource-grid" id="videoGrid"></div>
-
-</div>
-</section>
-
-<!-- MUSIC -->
-<section class="section" id="music">
-<div class="container">
-
-<div class="section-head">
-  <div>
-    <div class="section-title">🎵 在线音乐</div>
-    <div class="section-sub">点击直接进入在线音乐服务</div>
-  </div>
-</div>
-
-<div class="resource-grid" id="musicGrid"></div>
-
-</div>
-</section>
-
-<!-- MOVIE -->
-<section class="section" id="movie">
-<div class="container">
-
-<div class="section-head">
-  <div>
-    <div class="section-title">🎬 在线影视</div>
-    <div class="section-sub">在线影视服务入口</div>
-  </div>
-</div>
-
-<div class="notice">
-  影视入口仅作为网站导航，具体内容、地区可用性及版权状态由对应服务自行负责。
-</div>
-
-<div class="resource-grid" id="movieGrid"></div>
-
-</div>
-</section>
 
 <!-- LIVE -->
-<section class="section" id="live">
-<div class="container">
 
-<div class="section-head">
-  <div>
-    <div class="section-title">🌍 全球实时信息</div>
-    <div class="section-sub">天气、加密行情、全球摄像头、航班</div>
-  </div>
-</div>
+<section id="live">
+  <div class="container">
 
-<div class="live-grid">
-
-  <div class="panel">
-    <div class="panel-title">🌤️ 每日天气</div>
-    <div class="panel-sub">根据城市查询实时天气</div>
-
-    <div class="generator-row">
-      <input id="weatherCity" placeholder="输入城市，例如 Seoul / Beijing / Tokyo"
-             value="Seoul">
-      <button class="action-btn" onclick="getWeather()">查询</button>
+    <div class="section-head">
+      <div>
+        <div class="section-title">🌍 实时 <span>信息</span></div>
+        <div class="section-sub">天气、全球时间、汇率与加密资产换算</div>
+      </div>
+      <div class="section-badge">LIVE</div>
     </div>
 
-    <div id="weatherResult" style="margin-top:15px">
-      <div style="color:var(--muted);font-size:12px">
-        点击查询天气
+    <div class="grid-3">
+
+      <div class="panel weather-box">
+
+        <h3>🌤 每日天气</h3>
+
+        <div style="display:flex;gap:8px;margin-top:13px">
+          <input
+            id="weatherCity"
+            placeholder="输入城市，例如 Seoul"
+            style="flex:1;padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--bg2);color:var(--text)"
+          >
+          <button class="btn btn-primary" id="weatherBtn">查询</button>
+        </div>
+
+        <div id="weatherResult" style="margin-top:18px">
+          <span class="muted small">输入城市查询天气</span>
+        </div>
+
       </div>
+
+
+      <div class="panel">
+
+        <h3>💱 自由货币换算</h3>
+
+        <div class="mode-switch">
+          <button class="active" data-rate-mode="live">实时汇率</button>
+          <button data-rate-mode="custom">自定义汇率</button>
+        </div>
+
+        <div class="form-grid">
+
+          <div class="field">
+            <label>金额</label>
+            <input id="currencyAmount" type="number" value="100">
+          </div>
+
+          <div class="field">
+            <label>原币</label>
+            <select id="currencyFrom"></select>
+          </div>
+
+          <div class="field">
+            <label>目标币</label>
+            <select id="currencyTo"></select>
+          </div>
+
+          <div class="field custom-rate-field hidden">
+            <label>自定义汇率</label>
+            <input id="customRate" type="number" step="any" placeholder="1 原币 = ? 目标币">
+          </div>
+
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-primary" id="convertCurrency">
+            💱 开始换算
+          </button>
+
+          <button class="btn" id="swapCurrency">
+            ⇄ 交换
+          </button>
+        </div>
+
+        <div class="convert-result" id="currencyResult">
+          <div class="muted small">等待换算</div>
+        </div>
+
+      </div>
+
+
+      <div class="panel">
+
+        <h3>₿ 加密钱包</h3>
+
+        <div class="grid" id="walletGrid" style="margin-top:15px"></div>
+
+      </div>
+
     </div>
-  </div>
-
-  <div class="panel">
-    <div class="panel-title">₿ 加密行情</div>
-    <div class="panel-sub">公开行情接口，仅供参考</div>
-
-    <div class="market-grid" id="marketGrid">
-      <div class="market-card">
-        <div class="market-name">BTC / USD</div>
-        <div class="market-price">加载中…</div>
-      </div>
-      <div class="market-card">
-        <div class="market-name">ETH / USD</div>
-        <div class="market-price">加载中…</div>
-      </div>
-      <div class="market-card">
-        <div class="market-name">USDT / USD</div>
-        <div class="market-price">加载中…</div>
-      </div>
-    </div>
 
   </div>
-
-</div>
-
-<div class="resource-grid" id="liveGrid" style="margin-top:14px"></div>
-
-</div>
 </section>
 
-<!-- BACKEND -->
-<section class="section" id="developer">
-<div class="container">
 
-<div class="section-head">
-  <div>
-    <div class="section-title">💻 开发者 & 免费后端</div>
-    <div class="section-sub">API、数据库、后端、远程控制、测试</div>
+<!-- NOISE -->
+
+<section id="noise">
+  <div class="container">
+
+    <div class="section-head">
+      <div>
+        <div class="section-title">🎧 在线 <span>白噪音</span></div>
+        <div class="section-sub">网页直接生成声音，不依赖第三方音频文件</div>
+      </div>
+      <div class="section-badge">FOCUS / SLEEP</div>
+    </div>
+
+    <div class="noise-grid">
+
+      <div class="panel">
+
+        <h3>选择声音</h3>
+
+        <div class="noise-presets" style="margin-top:15px">
+
+          <button class="noise-btn active" data-noise="rain">
+            🌧️ 雨声
+          </button>
+
+          <button class="noise-btn" data-noise="storm">
+            ⛈️ 雷雨
+          </button>
+
+          <button class="noise-btn" data-noise="forest">
+            🌲 森林
+          </button>
+
+          <button class="noise-btn" data-noise="ocean">
+            🌊 海浪
+          </button>
+
+          <button class="noise-btn" data-noise="cafe">
+            ☕ 咖啡厅
+          </button>
+
+          <button class="noise-btn" data-noise="brown">
+            🌀 棕噪音
+          </button>
+
+        </div>
+
+        <div class="noise-status" id="noiseStatus">
+          当前：雨声 · 未播放
+        </div>
+
+      </div>
+
+      <div class="panel">
+
+        <h3>控制</h3>
+
+        <div class="form-actions">
+          <button class="btn btn-primary" id="noisePlay">▶ 播放</button>
+          <button class="btn" id="noiseStop">■ 停止</button>
+        </div>
+
+        <div class="field" style="margin-top:20px">
+          <label>音量</label>
+          <input class="range" id="noiseVolume" type="range" min="0" max="1" step=".01" value=".45">
+        </div>
+
+        <div class="field" style="margin-top:16px">
+          <label>定时关闭</label>
+          <select id="noiseTimer">
+            <option value="0">不自动关闭</option>
+            <option value="15">15 分钟</option>
+            <option value="30">30 分钟</option>
+            <option value="60">60 分钟</option>
+            <option value="120">120 分钟</option>
+          </select>
+        </div>
+
+      </div>
+
+    </div>
+
   </div>
-</div>
-
-<div class="resource-grid" id="developerGrid"></div>
-
-</div>
 </section>
 
-<!-- PLAYGROUND -->
-<section class="section" id="playground">
-<div class="container">
 
-<div class="section-head">
-  <div>
-    <div class="section-title">🎮 Playground</div>
-    <div class="section-sub">休息一下，玩几个浏览器小游戏</div>
+<!-- SEARCH -->
+
+<section id="search">
+  <div class="container">
+
+    <div class="section-head">
+      <div>
+        <div class="section-title">🔎 资源 / <span>搜索入口</span></div>
+        <div class="section-sub">
+          第三方搜索站导航，仅提供入口，不参与内容托管
+        </div>
+      </div>
+      <div class="section-badge">SEARCH</div>
+    </div>
+
+    <div class="notice">
+      <strong>版权提示：</strong>
+      搜索结果可能包含受版权保护的内容。请遵守当地法律及版权许可，
+      仅用于合法内容检索与个人授权内容。
+    </div>
+
+    <div class="grid" id="searchGrid"></div>
+
   </div>
-</div>
-
-<div class="resource-grid">
-
-  <button class="resource-card" onclick="openGame('2048')">
-    <div class="card-top">
-      <div class="card-icon">🔢</div>
-      <div class="card-title">2048</div>
-    </div>
-    <div class="card-desc">经典数字合并小游戏</div>
-    <span class="card-tag">在线运行</span>
-  </button>
-
-  <button class="resource-card" onclick="openGame('snake')">
-    <div class="card-top">
-      <div class="card-icon">🐍</div>
-      <div class="card-title">贪吃蛇</div>
-    </div>
-    <div class="card-desc">经典方向键小游戏</div>
-    <span class="card-tag">在线运行</span>
-  </button>
-
-  <button class="resource-card" onclick="openGame('reaction')">
-    <div class="card-top">
-      <div class="card-icon">⚡</div>
-      <div class="card-title">反应测试</div>
-    </div>
-    <div class="card-desc">测试你的点击反应速度</div>
-    <span class="card-tag">在线运行</span>
-  </button>
-
-  <button class="resource-card" onclick="openGame('typing')">
-    <div class="card-top">
-      <div class="card-icon">⌨️</div>
-      <div class="card-title">打字测试</div>
-    </div>
-    <div class="card-desc">测试输入速度</div>
-    <span class="card-tag">在线运行</span>
-  </button>
-
-  <button class="resource-card" onclick="openGame('memory')">
-    <div class="card-top">
-      <div class="card-icon">🧠</div>
-      <div class="card-title">记忆翻牌</div>
-    </div>
-    <div class="card-desc">考验你的短时记忆</div>
-    <span class="card-tag">在线运行</span>
-  </button>
-
-</div>
-
-</div>
 </section>
+
+
+<!-- MEDIA -->
+
+<section id="media">
+  <div class="container">
+
+    <div class="section-head">
+      <div>
+        <div class="section-title">🎵 音乐 / <span>影视</span></div>
+        <div class="section-sub">直接进入在线音乐和影视平台</div>
+      </div>
+      <div class="section-badge">MEDIA</div>
+    </div>
+
+    <div class="grid" id="mediaGrid"></div>
+
+  </div>
+</section>
+
 
 <!-- TELEGRAM -->
-<section class="section" id="telegram">
-<div class="container">
 
-<div class="section-head">
-  <div>
-    <div class="section-title">📡 资源公社 · Telegram</div>
-    <div class="section-sub">相关频道与搜索入口</div>
+<section id="telegram">
+  <div class="container">
+
+    <div class="section-head">
+      <div>
+        <div class="section-title">✈️ Telegram <span>资源网络</span></div>
+        <div class="section-sub">资源公社及相关频道入口</div>
+      </div>
+      <div class="section-badge">TELEGRAM</div>
+    </div>
+
+    <div class="tg-grid">
+
+      <a class="tg-card" href="https://t.me/ZYGS123" target="_blank" rel="noopener noreferrer">
+        <div class="tg-icon">📦</div>
+        <div class="tg-handle">@ZYGS123</div>
+        <div class="tg-desc">资源公社主频道</div>
+      </a>
+
+      <a class="tg-card" href="https://t.me/CXSNS" target="_blank" rel="noopener noreferrer">
+        <div class="tg-icon">📱</div>
+        <div class="tg-handle">@CXSNS</div>
+        <div class="tg-desc">软件 / 应用资源</div>
+      </a>
+
+      <a class="tg-card" href="https://t.me/soso_Group" target="_blank" rel="noopener noreferrer">
+        <div class="tg-icon">🔎</div>
+        <div class="tg-handle">@soso_Group</div>
+        <div class="tg-desc">全网资源搜索</div>
+      </a>
+
+      <a class="tg-card" href="https://t.me/sosotune" target="_blank" rel="noopener noreferrer">
+        <div class="tg-icon">🎵</div>
+        <div class="tg-handle">@sosotune</div>
+        <div class="tg-desc">音乐资源</div>
+      </a>
+
+      <a class="tg-card" href="https://t.me/cbookX" target="_blank" rel="noopener noreferrer">
+        <div class="tg-icon">📚</div>
+        <div class="tg-handle">@cbookX</div>
+        <div class="tg-desc">电子书资源</div>
+      </a>
+
+      <a class="tg-card" href="https://t.me/Wallora" target="_blank" rel="noopener noreferrer">
+        <div class="tg-icon">🖼️</div>
+        <div class="tg-handle">@Wallora</div>
+        <div class="tg-desc">壁纸 / 高清图片</div>
+      </a>
+
+      <a class="tg-card" href="https://t.me/ZYPapk" target="_blank" rel="noopener noreferrer">
+        <div class="tg-icon">🎮</div>
+        <div class="tg-handle">@ZYPapk</div>
+        <div class="tg-desc">游戏资源</div>
+      </a>
+
+      <a class="tg-card" href="https://t.me/MR518" target="_blank" rel="noopener noreferrer">
+        <div class="tg-icon">💬</div>
+        <div class="tg-handle">@MR518</div>
+        <div class="tg-desc">联系 / 合作</div>
+      </a>
+
+    </div>
+
   </div>
-</div>
+</section>
 
-<div class="telegram-grid">
 
-  <a class="tg-card" href="https://t.me/ZYGS123" target="_blank" rel="noopener">
-    <div class="tg-icon">📦</div>
-    <div class="tg-title">资源公社</div>
-    <div class="tg-handle">@ZYGS123</div>
-  </a>
+<!-- PLAYGROUND -->
 
-  <a class="tg-card" href="https://t.me/CXSNS" target="_blank" rel="noopener">
-    <div class="tg-icon">📱</div>
-    <div class="tg-title">软件资源</div>
-    <div class="tg-handle">@CXSNS</div>
-  </a>
+<section id="playground">
+  <div class="container">
 
-  <a class="tg-card" href="https://t.me/soso_Group" target="_blank" rel="noopener">
-    <div class="tg-icon">🔎</div>
-    <div class="tg-title">全网搜索</div>
-    <div class="tg-handle">@soso_Group</div>
-  </a>
+    <div class="section-head">
+      <div>
+        <div class="section-title">🎮 Playground <span>小游戏</span></div>
+        <div class="section-sub">无聊的时候玩一下，全部在网页内运行</div>
+      </div>
+      <div class="section-badge">PLAY</div>
+    </div>
 
-  <a class="tg-card" href="https://t.me/sosotune" target="_blank" rel="noopener">
-    <div class="tg-icon">🎵</div>
-    <div class="tg-title">音乐</div>
-    <div class="tg-handle">@sosotune</div>
-  </a>
+    <div class="game-grid">
 
-  <a class="tg-card" href="https://t.me/cbookX" target="_blank" rel="noopener">
-    <div class="tg-icon">📚</div>
-    <div class="tg-title">电子书</div>
-    <div class="tg-handle">@cbookX</div>
-  </a>
+      <button class="game-card" data-game="2048">
+        <h3>🧩 2048</h3>
+        <p>经典数字合并小游戏</p>
+      </button>
 
-  <a class="tg-card" href="https://t.me/Wallora" target="_blank" rel="noopener">
-    <div class="tg-icon">🖼️</div>
-    <div class="tg-title">壁纸</div>
-    <div class="tg-handle">@Wallora</div>
-  </a>
+      <button class="game-card" data-game="snake">
+        <h3>🐍 贪吃蛇</h3>
+        <p>方向键控制移动</p>
+      </button>
 
-  <a class="tg-card" href="https://t.me/ZYPapk" target="_blank" rel="noopener">
-    <div class="tg-icon">🎮</div>
-    <div class="tg-title">游戏</div>
-    <div class="tg-handle">@ZYPapk</div>
-  </a>
+      <button class="game-card" data-game="reaction">
+        <h3>⚡ 反应力</h3>
+        <p>测试你的反应速度</p>
+      </button>
 
-  <a class="tg-card" href="https://t.me/MR518" target="_blank" rel="noopener">
-    <div class="tg-icon">👤</div>
-    <div class="tg-title">联系站长</div>
-    <div class="tg-handle">@MR518</div>
-  </a>
+      <button class="game-card" data-game="typing">
+        <h3>⌨️ 打字挑战</h3>
+        <p>测试输入速度</p>
+      </button>
 
-</div>
+      <button class="game-card" data-game="memory">
+        <h3>🧠 记忆翻牌</h3>
+        <p>寻找相同图案</p>
+      </button>
 
-</div>
+    </div>
+
+  </div>
 </section>
 
 </main>
 
+
 <footer>
-<div class="container">
-  <div class="footer-grid">
-    <div>
-      <strong style="color:var(--text)">资源公社 · RESOURCE HUB</strong>
-      <div style="margin-top:7px">
-        全球在线资源 · 工具 · AI · 云盘 · 开发 · 娱乐
+  <div class="container">
+
+    <div class="footer-grid">
+
+      <div>
+        <div class="footer-title">资源公社 · RESOURCE HUB</div>
+        <p class="muted small">
+          在线资源导航、工具集合与实用资源入口。
+          让常用的网站真正变得更容易找到。
+        </p>
       </div>
+
+      <div>
+        <div class="footer-title">资源</div>
+        <div class="footer-links">
+          <a href="#tools">在线工具</a>
+          <a href="#cloud">在线网盘</a>
+          <a href="#ai">AI 工具</a>
+          <a href="#image">图片设计</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-title">手机</div>
+        <div class="footer-links">
+          <a href="#mobile">Android</a>
+          <a href="#mobile">iOS</a>
+          <a href="#test">测试数据</a>
+          <a href="#live">实时工具</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-title">Telegram</div>
+        <div class="footer-links">
+          <a href="https://t.me/ZYGS123" target="_blank" rel="noopener noreferrer">@ZYGS123</a>
+          <a href="https://t.me/soso_Group" target="_blank" rel="noopener noreferrer">@soso_Group</a>
+          <a href="https://t.me/CXSNS" target="_blank" rel="noopener noreferrer">@CXSNS</a>
+          <a href="https://t.me/MR518" target="_blank" rel="noopener noreferrer">联系 @MR518</a>
+        </div>
+      </div>
+
     </div>
 
-    <div>
-      © <span id="year"></span> RESOURCE HUB
-      <br>
-      <span style="opacity:.7">Designed for China & Asian users</span>
+    <div class="copyright">
+      © <span id="year"></span> 资源公社 · RESOURCE HUB
+      · All Rights Reserved.
     </div>
+
   </div>
-</div>
 </footer>
 
-<a class="float-tg"
-   href="https://t.me/ZYGS123"
-   target="_blank"
-   rel="noopener">
-  ✈️ 资源公社
-</a>
+
+<a
+  class="float-tg"
+  href="https://t.me/ZYGS123"
+  target="_blank"
+  rel="noopener noreferrer"
+  title="打开资源公社 Telegram"
+>✈</a>
+
 
 <!-- SEARCH MODAL -->
-<div class="modal" id="searchModal" onclick="modalOutside(event,'searchModal')">
+
+<div class="modal" id="searchModal">
   <div class="modal-box">
 
     <div class="modal-head">
-      <div class="modal-title">🔎 搜索结果</div>
-      <button class="modal-close" onclick="closeModal('searchModal')">×</button>
-    </div>
-
-    <div class="modal-body">
-      <div class="generator-row">
-        <input id="modalSearch" placeholder="搜索资源">
-        <button class="action-btn" onclick="renderSearchResults()">搜索</button>
+      <div>
+        <h2>🔎 搜索资源</h2>
+        <div class="muted small" id="searchModalHint">输入关键词搜索</div>
       </div>
 
-      <div id="searchResults" style="margin-top:10px"></div>
+      <button class="modal-close" data-close="searchModal">×</button>
     </div>
+
+    <input
+      id="modalSearchInput"
+      type="search"
+      placeholder="搜索资源名称、分类或描述……"
+      style="width:100%;padding:13px;border:1px solid var(--line);border-radius:12px;background:var(--bg2);color:var(--text);outline:none"
+    >
+
+    <div class="search-result-list" id="searchResults"></div>
 
   </div>
 </div>
+
+
+<!-- IDENTITY MODAL -->
+
+<div class="modal" id="identityModal">
+  <div class="modal-box">
+
+    <div class="modal-head">
+      <div>
+        <h2>🧪 测试数据生成器</h2>
+        <div class="muted small">
+          仅生成虚构测试数据
+        </div>
+      </div>
+
+      <button class="modal-close" data-close="identityModal">×</button>
+    </div>
+
+    <div id="identityModalContent"></div>
+
+  </div>
+</div>
+
 
 <!-- GAME MODAL -->
-<div class="modal" id="gameModal" onclick="gameModalOutside(event)">
+
+<div class="modal" id="gameModal">
   <div class="modal-box">
 
     <div class="modal-head">
-      <div class="modal-title">🎮 Playground</div>
-      <button class="modal-close" onclick="closeGame()">×</button>
-    </div>
-
-    <div class="modal-body">
-
-      <div class="game-tabs">
-        <button class="game-tab" onclick="openGame('2048')">2048</button>
-        <button class="game-tab" onclick="openGame('snake')">贪吃蛇</button>
-        <button class="game-tab" onclick="openGame('reaction')">反应</button>
-        <button class="game-tab" onclick="openGame('typing')">打字</button>
-        <button class="game-tab" onclick="openGame('memory')">记忆</button>
+      <div>
+        <h2 id="gameTitle">🎮 Playground</h2>
+        <div class="muted small" id="gameInfo"></div>
       </div>
 
-      <div id="gameArea" class="game-area"></div>
-
+      <button class="modal-close" id="gameClose">×</button>
     </div>
+
+    <div class="game-stage" id="gameStage"></div>
 
   </div>
 </div>
 
-<!-- MOBILE MENU -->
-<div class="modal" id="mobileModal" onclick="modalOutside(event,'mobileModal')">
-  <div class="modal-box">
-
-    <div class="modal-head">
-      <div class="modal-title">菜单</div>
-      <button class="modal-close" onclick="closeModal('mobileModal')">×</button>
-    </div>
-
-    <div class="modal-body" style="display:grid;gap:8px">
-
-      <a class="secondary-btn" href="#cloud" onclick="closeModal('mobileModal')">☁️ 在线网盘</a>
-      <a class="secondary-btn" href="#ai" onclick="closeModal('mobileModal')">🤖 AI</a>
-      <a class="secondary-btn" href="#images" onclick="closeModal('mobileModal')">🖼️ 图库</a>
-      <a class="secondary-btn" href="#tools" onclick="closeModal('mobileModal')">🛠️ 工具</a>
-      <a class="secondary-btn" href="#video" onclick="closeModal('mobileModal')">🎬 视频</a>
-      <a class="secondary-btn" href="#music" onclick="closeModal('mobileModal')">🎵 音乐</a>
-      <a class="secondary-btn" href="#live" onclick="closeModal('mobileModal')">🌍 实况</a>
-      <a class="secondary-btn" href="#developer" onclick="closeModal('mobileModal')">💻 开发</a>
-      <a class="secondary-btn" href="#playground" onclick="closeModal('mobileModal')">🎮 游戏</a>
-
-    </div>
-
-  </div>
-</div>
-
-<div class="toast" id="toast"></div>
 
 <script>
 /* =========================================================
-   RESOURCE DATA
-========================================================= */
+   RESOURCE HUB
+   ========================================================= */
 
-const resources = {
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
 
-cloud:[
-  ["🇨🇳","百度网盘","中国常用在线网盘","https://pan.baidu.com/","中国"],
-  ["🟠","阿里云盘","高速云存储与文件管理","https://www.alipan.com/","中国"],
-  ["⚡","夸克网盘","搜索、文件、AI与云盘","https://pan.quark.cn/","中国"],
-  ["☁️","天翼云盘","中国电信云盘","https://cloud.189.cn/","中国"],
-  ["📱","中国移动云盘","中国移动在线云盘","https://yun.139.com/","中国"],
-  ["💬","腾讯微云","腾讯在线文件存储","https://www.weiyun.com/","中国"],
-  ["🌱","坚果云","同步、存储、协作","https://www.jianguoyun.com/","中国"],
-  ["⚡","迅雷云盘","迅雷在线云存储","https://pan.xunlei.com/","中国"],
-  ["🔵","115生活","个人云端存储","https://115.com/","中国"],
-  ["🌈","Google Drive","Google 在线云盘","https://drive.google.com/","国际"],
-  ["🪟","OneDrive","Microsoft 在线云盘","https://onedrive.live.com/","国际"],
-  ["📦","Dropbox","全球常用云存储","https://www.dropbox.com/","国际"],
-  ["🟢","MEGA","端到端加密云盘","https://mega.io/","国际"],
-  ["🛡️","Proton Drive","隐私云存储","https://drive.proton.me/","国际"],
-  ["☁️","pCloud","云存储与同步","https://www.pcloud.com/","国际"],
-  ["📁","Box","企业与个人云存储","https://www.box.com/","国际"],
-  ["🍎","iCloud Drive","Apple 云盘","https://www.icloud.com/iclouddrive/","国际"]
-],
+const resourceSets = {
 
-ai:[
-  ["🤖","ChatGPT","OpenAI AI 助手","https://chatgpt.com/","AI"],
-  ["🟣","Claude","AI 助手与写作","https://claude.ai/","AI"],
-  ["🔵","Gemini","Google AI","https://gemini.google.com/","AI"],
-  ["⚡","Grok","AI 助手","https://grok.com/","AI"],
-  ["🔎","Perplexity","AI 搜索","https://www.perplexity.ai/","AI"],
-  ["🐋","DeepSeek","中文 AI 助手","https://chat.deepseek.com/","AI"],
-  ["🪟","Copilot","Microsoft AI","https://copilot.microsoft.com/","AI"],
-  ["🧠","Poe","多模型 AI 平台","https://poe.com/","AI"]
-],
+  tools:[
+    {
+      icon:"🌐",
+      title:"Google 翻译",
+      desc:"在线多语言翻译",
+      tag:"翻译",
+      url:"https://translate.google.com/"
+    },
+    {
+      icon:"📝",
+      title:"DeepL",
+      desc:"高质量在线翻译",
+      tag:"翻译",
+      url:"https://www.deepl.com/translator"
+    },
+    {
+      icon:"📄",
+      title:"iLovePDF",
+      desc:"PDF 合并、压缩、转换",
+      tag:"PDF",
+      url:"https://www.ilovepdf.com/"
+    },
+    {
+      icon:"🔄",
+      title:"CloudConvert",
+      desc:"在线文件格式转换",
+      tag:"转换",
+      url:"https://cloudconvert.com/"
+    },
+    {
+      icon:"🧰",
+      title:"TinyWow",
+      desc:"PDF、图片、文件综合工具",
+      tag:"工具",
+      url:"https://tinywow.com/"
+    },
+    {
+      icon:"📤",
+      title:"WeTransfer",
+      desc:"在线发送大文件",
+      tag:"文件",
+      url:"https://wetransfer.com/"
+    },
+    {
+      icon:"✉️",
+      title:"给未来的自己发邮件",
+      desc:"FutureMe 中文入口",
+      tag:"邮件",
+      url:"https://www.futureme.org/"
+    },
+    {
+      icon:"📨",
+      title:"临时邮箱",
+      desc:"一次性临时邮箱",
+      tag:"邮箱",
+      url:"https://temp-mail.org/"
+    },
+    {
+      icon:"📱",
+      title:"开发者短信服务",
+      desc:"Twilio 虚拟号码 / 短信 API",
+      tag:"开发",
+      url:"https://www.twilio.com/"
+    },
+    {
+      icon:"📦",
+      title:"取文件",
+      desc:"在线文件获取入口",
+      tag:"文件",
+      url:"https://quwenjian.cc/#/"
+    },
+    {
+      icon:"📥",
+      title:"盘搜",
+      desc:"第三方网盘搜索入口",
+      tag:"搜索",
+      url:"https://t.co/FqnICpSLTF"
+    },
+    {
+      icon:"🎬",
+      title:"短视频工具",
+      desc:"在线视频工具入口",
+      tag:"视频",
+      url:"https://t.co/2KbdHwxkQi"
+    }
+  ],
 
-images:[
-  ["📷","Unsplash","高质量免费图片","https://unsplash.com/","无版权图库"],
-  ["📸","Pexels","免费照片与视频素材","https://www.pexels.com/","无版权图库"],
-  ["🌈","Pixabay","图片、插画、视频","https://pixabay.com/","无版权图库"],
-  ["🏛️","Wikimedia Commons","自由授权媒体资料库","https://commons.wikimedia.org/","开放素材"],
-  ["🔓","Openverse","开放授权图片搜索","https://openverse.org/","开放素材"],
-  ["🔍","Google Lens","以图搜图","https://lens.google.com/","以图搜图"],
-  ["🖼️","TinEye","反向图片搜索","https://tineye.com/","以图搜图"],
-  ["🔎","Bing Visual Search","微软视觉搜索","https://www.bing.com/visualsearch","以图搜图"],
-  ["🌐","Yandex Images","图片搜索","https://yandex.com/images/","以图搜图"]
-],
+  cloud:[
+    {
+      icon:"☁️",
+      title:"Google Drive",
+      desc:"Google 在线云盘",
+      tag:"Cloud",
+      url:"https://drive.google.com/"
+    },
+    {
+      icon:"📦",
+      title:"Dropbox",
+      desc:"Dropbox 网页版",
+      tag:"Cloud",
+      url:"https://www.dropbox.com/home"
+    },
+    {
+      icon:"☁️",
+      title:"OneDrive",
+      desc:"Microsoft 在线云盘",
+      tag:"Cloud",
+      url:"https://onedrive.live.com/"
+    },
+    {
+      icon:"🍎",
+      title:"iCloud Drive",
+      desc:"Apple iCloud 云盘",
+      tag:"Cloud",
+      url:"https://www.icloud.com/iclouddrive/"
+    },
+    {
+      icon:"🌐",
+      title:"MEGA",
+      desc:"加密云存储",
+      tag:"Cloud",
+      url:"https://mega.io/"
+    },
+    {
+      icon:"🔵",
+      title:"pCloud",
+      desc:"在线文件存储",
+      tag:"Cloud",
+      url:"https://www.pcloud.com/"
+    },
+    {
+      icon:"📁",
+      title:"Box",
+      desc:"企业级在线文件",
+      tag:"Cloud",
+      url:"https://www.box.com/"
+    },
+    {
+      icon:"🔐",
+      title:"Proton Drive",
+      desc:"隐私云存储",
+      tag:"Cloud",
+      url:"https://drive.proton.me/"
+    },
+    {
+      icon:"💻",
+      title:"百度网盘",
+      desc:"百度网页版云盘",
+      tag:"中国",
+      url:"https://pan.baidu.com/"
+    },
+    {
+      icon:"⚡",
+      title:"阿里云盘",
+      desc:"阿里云盘网页版",
+      tag:"中国",
+      url:"https://www.alipan.com/"
+    },
+    {
+      icon:"🟢",
+      title:"夸克网盘",
+      desc:"夸克网页版云盘",
+      tag:"中国",
+      url:"https://pan.quark.cn/"
+    },
+    {
+      icon:"📂",
+      title:"115",
+      desc:"115 网盘网页版",
+      tag:"中国",
+      url:"https://115.com/"
+    }
+  ],
 
-creative:[
-  ["🎨","Photopea","免费在线 PS / PSD","https://www.photopea.com/","在线PS"],
-  ["✨","Canva","在线设计与 Logo","https://www.canva.com/","设计"],
-  ["🪄","Adobe Express","在线创意设计","https://www.adobe.com/express/","设计"],
-  ["🔤","Favicon.io","Logo / Favicon 生成","https://favicon.io/","Logo"],
-  ["🖼️","Remove.bg","在线抠图","https://www.remove.bg/","图片"],
-  ["🔬","Upscale.media","AI 图片放大","https://www.upscale.media/","AI图片"],
-  ["✨","Let's Enhance","AI 图片增强","https://letsenhance.io/","AI图片"]
-],
+  ai:[
+    {
+      icon:"🤖",
+      title:"ChatGPT",
+      desc:"OpenAI AI 助手",
+      tag:"AI",
+      url:"https://chatgpt.com/"
+    },
+    {
+      icon:"🟣",
+      title:"Claude",
+      desc:"Anthropic AI 助手",
+      tag:"AI",
+      url:"https://claude.ai/"
+    },
+    {
+      icon:"✨",
+      title:"Gemini",
+      desc:"Google AI 助手",
+      tag:"AI",
+      url:"https://gemini.google.com/"
+    },
+    {
+      icon:"𝕏",
+      title:"Grok",
+      desc:"xAI AI 助手",
+      tag:"AI",
+      url:"https://grok.com/"
+    },
+    {
+      icon:"🔎",
+      title:"Perplexity",
+      desc:"AI 搜索与研究",
+      tag:"AI",
+      url:"https://www.perplexity.ai/"
+    },
+    {
+      icon:"🐋",
+      title:"DeepSeek",
+      desc:"AI 对话与推理",
+      tag:"AI",
+      url:"https://chat.deepseek.com/"
+    },
+    {
+      icon:"🪟",
+      title:"Microsoft Copilot",
+      desc:"微软 AI 助手",
+      tag:"AI",
+      url:"https://copilot.microsoft.com/"
+    },
+    {
+      icon:"🧠",
+      title:"Poe",
+      desc:"多模型 AI 平台",
+      tag:"AI",
+      url:"https://poe.com/"
+    }
+  ],
 
-tools:[
-  ["📄","取文件","在线文件传输/取文件","https://quwenjian.cc/#/","文件"],
-  ["🌐","Google 翻译","在线翻译","https://translate.google.com/","翻译"],
-  ["🔤","DeepL","高质量在线翻译","https://www.deepl.com/translator","翻译"],
-  ["📧","Temp Mail","一次性邮箱","https://temp-mail.org/","邮箱"],
-  ["📮","Temp Mail CO","临时邮箱","https://www.tempmail.co/","邮箱"],
-  ["📱","Twilio","开发测试号码与通信 API","https://www.twilio.com/","开发号码"],
-  ["🔐","Have I Been Pwned","邮箱安全检查","https://haveibeenpwned.com/","安全"],
-  ["📝","FutureMe","给未来的自己发邮件","https://www.futureme.com/","邮箱"],
-  ["📑","ILovePDF","在线 PDF 工具","https://www.ilovepdf.com/","PDF"],
-  ["🔄","CloudConvert","在线文件转换","https://cloudconvert.com/","转换"],
-  ["🧰","TinyWow","在线文件工具箱","https://tinywow.com/","工具"],
-  ["📤","WeTransfer","在线文件传输","https://wetransfer.com/","文件"],
-  ["🎨","Coolors","在线配色工具","https://coolors.co/","设计"],
-  ["🔗","URL Encode","URL 编解码","https://www.urlencoder.io/","开发"],
-  ["🧪","JSONPlaceholder","API 测试","https://jsonplaceholder.typicode.com/","开发"],
-  ["🧬","Mockaroo","测试数据生成","https://www.mockaroo.com/","测试"],
-  ["👤","Random User","随机用户测试数据","https://randomuser.me/","测试"]
-],
+  image:[
+    {
+      icon:"🖌️",
+      title:"在线 PS · Photopea",
+      desc:"浏览器直接编辑 PSD / 图片",
+      tag:"PS",
+      url:"https://www.photopea.com/"
+    },
+    {
+      icon:"🎨",
+      title:"Canva",
+      desc:"在线设计 / LOGO / 海报",
+      tag:"设计",
+      url:"https://www.canva.com/"
+    },
+    {
+      icon:"📸",
+      title:"Unsplash",
+      desc:"高质量免费图片",
+      tag:"图库",
+      url:"https://unsplash.com/"
+    },
+    {
+      icon:"🌄",
+      title:"Pexels",
+      desc:"免费图片与视频",
+      tag:"图库",
+      url:"https://www.pexels.com/"
+    },
+    {
+      icon:"🖼️",
+      title:"Pixabay",
+      desc:"免费图片 / 视频 / 音频",
+      tag:"图库",
+      url:"https://pixabay.com/"
+    },
+    {
+      icon:"🏛️",
+      title:"Wikimedia Commons",
+      desc:"开放授权媒体资源",
+      tag:"图库",
+      url:"https://commons.wikimedia.org/"
+    },
+    {
+      icon:"🌐",
+      title:"Openverse",
+      desc:"开放授权图片 / 音频搜索",
+      tag:"图库",
+      url:"https://openverse.org/"
+    },
+    {
+      icon:"🔍",
+      title:"Google Lens",
+      desc:"以图搜图 / 图片识别",
+      tag:"搜图",
+      url:"https://lens.google.com/"
+    },
+    {
+      icon:"🔎",
+      title:"TinEye",
+      desc:"反向图片搜索",
+      tag:"搜图",
+      url:"https://tineye.com/"
+    },
+    {
+      icon:"✂️",
+      title:"Remove.bg",
+      desc:"在线自动抠图",
+      tag:"抠图",
+      url:"https://www.remove.bg/"
+    },
+    {
+      icon:"🔬",
+      title:"AI 图片无损放大",
+      desc:"Upscale.media 在线放大",
+      tag:"放大",
+      url:"https://www.upscale.media/"
+    },
+    {
+      icon:"🧩",
+      title:"截图拼接",
+      desc:"iLoveIMG 图片合并",
+      tag:"拼接",
+      url:"https://www.iloveimg.com/merge-image"
+    },
+    {
+      icon:"🔲",
+      title:"九宫格切图",
+      desc:"在线图片分割",
+      tag:"九宫格",
+      url:"https://pinetools.com/split-image"
+    },
+    {
+      icon:"🔰",
+      title:"Favicon Generator",
+      desc:"在线生成网站图标",
+      tag:"LOGO",
+      url:"https://favicon.io/"
+    }
+  ],
 
-video:[
-  ["☁️","CloudConvert","在线视频/文件转换","https://cloudconvert.com/","视频"],
-  ["🛠️","Kapwing","在线视频编辑","https://www.kapwing.com/","视频"],
-  ["🎬","VEED","在线视频编辑","https://www.veed.io/","视频"],
-  ["✂️","123APPS","在线视频工具","https://123apps.com/","视频"],
-  ["📦","Convertio","在线文件转换","https://convertio.co/","转换"],
-  ["🎞️","Clideo","在线视频编辑工具","https://clideo.com/","视频"]
-],
+  android:[
+    {
+      icon:"🤖",
+      title:"Android Developers",
+      desc:"Android 官方开发平台",
+      tag:"Android",
+      url:"https://developer.android.com/"
+    },
+    {
+      icon:"🧰",
+      title:"Android Studio",
+      desc:"官方 Android 开发工具",
+      tag:"Android",
+      url:"https://developer.android.com/studio"
+    },
+    {
+      icon:"🔧",
+      title:"Platform Tools",
+      desc:"ADB / Fastboot 官方工具",
+      tag:"ADB",
+      url:"https://developer.android.com/tools/releases/platform-tools"
+    },
+    {
+      icon:"⌨️",
+      title:"ADB Shell",
+      desc:"ADB 在线资料与命令参考",
+      tag:"ADB",
+      url:"https://adbshell.com/"
+    },
+    {
+      icon:"📦",
+      title:"APKMirror",
+      desc:"Android 应用版本资料",
+      tag:"APK",
+      url:"https://www.apkmirror.com/"
+    },
+    {
+      icon:"📱",
+      title:"APKPure",
+      desc:"Android 应用资源",
+      tag:"APK",
+      url:"https://apkpure.com/"
+    }
+  ],
 
-music:[
-  ["🎵","Spotify Web","在线音乐","https://open.spotify.com/","音乐"],
-  ["🎧","YouTube Music","在线音乐","https://music.youtube.com/","音乐"],
-  ["🍎","Apple Music","在线音乐","https://music.apple.com/","音乐"],
-  ["🎶","SoundCloud","在线音乐社区","https://soundcloud.com/","音乐"],
-  ["🎼","Bandcamp","独立音乐平台","https://bandcamp.com/","音乐"]
-],
+  ios:[
+    {
+      icon:"🍎",
+      title:"Apple Developer",
+      desc:"苹果官方开发者平台",
+      tag:"iOS",
+      url:"https://developer.apple.com/"
+    },
+    {
+      icon:"🛒",
+      title:"App Store",
+      desc:"Apple 官方应用商店",
+      tag:"iOS",
+      url:"https://www.apple.com/app-store/"
+    },
+    {
+      icon:"☁️",
+      title:"iCloud",
+      desc:"Apple 云服务网页版",
+      tag:"iOS",
+      url:"https://www.icloud.com/"
+    },
+    {
+      icon:"🧪",
+      title:"TestFlight",
+      desc:"Apple Beta 测试平台",
+      tag:"iOS",
+      url:"https://developer.apple.com/testflight/"
+    },
+    {
+      icon:"⚡",
+      title:"Apple Shortcuts",
+      desc:"快捷指令在线入口",
+      tag:"iOS",
+      url:"https://www.icloud.com/shortcuts/"
+    },
+    {
+      icon:"🟦",
+      title:"AltStore",
+      desc:"iOS 应用侧载工具入口",
+      tag:"iOS",
+      url:"https://altstore.io/"
+    },
+    {
+      icon:"🟪",
+      title:"SideStore",
+      desc:"iOS 应用管理工具",
+      tag:"iOS",
+      url:"https://sidestore.io/"
+    },
+    {
+      icon:"🔧",
+      title:"Sideloadly",
+      desc:"iOS 应用安装工具",
+      tag:"iOS",
+      url:"https://sideloadly.io/"
+    },
+    {
+      icon:"🧩",
+      title:"TrollStore",
+      desc:"iOS 工具项目主页",
+      tag:"iOS",
+      url:"https://github.com/opa334/TrollStore"
+    }
+  ],
 
-movie:[
-  ["🎬","YouTube Movies","在线影视/影片","https://www.youtube.com/movies","影视"],
-  ["🍿","Netflix","在线影视","https://www.netflix.com/","影视"],
-  ["🎞️","Internet Archive","公共数字档案","https://archive.org/details/movies","影视"],
-  ["🎬","在线影视入口","你提供的影视入口","https://zip0.com/?r=MXI36E","影视"]
-],
+  mobileSecurity:[
+    {
+      icon:"🛡️",
+      title:"VirusTotal",
+      desc:"在线文件 / URL 安全检测",
+      tag:"安全",
+      url:"https://www.virustotal.com/"
+    },
+    {
+      icon:"🔐",
+      title:"Have I Been Pwned",
+      desc:"账号泄露查询",
+      tag:"安全",
+      url:"https://haveibeenpwned.com/"
+    },
+    {
+      icon:"🔎",
+      title:"URLScan",
+      desc:"网页安全分析",
+      tag:"安全",
+      url:"https://urlscan.io/"
+    }
+  ],
 
-live:[
-  ["✈️","Flightradar24","全球航班追踪","https://www.flightradar24.com/","航班"],
-  ["✈️","FlightAware","航班追踪","https://www.flightaware.com/","航班"],
-  ["📡","ADS-B Exchange","航班实时数据","https://globe.adsbexchange.com/","航班"],
-  ["🌍","Windy","全球天气地图","https://www.windy.com/","天气"],
-  ["🌐","Timeanddate","全球时间","https://www.timeanddate.com/worldclock/","时间"],
-  ["📹","Webcam Taxi","全球网络摄像头","https://www.webcamtaxi.com/","实况"],
-  ["🌍","EarthCam","全球摄像头","https://www.earthcam.com/","实况"],
-  ["🗺️","MapCrunch","随机全球街景","https://www.mapcrunch.com/","地图"]
-],
+  dev:[
+    {
+      icon:"🧪",
+      title:"Mockaroo",
+      desc:"在线生成模拟测试数据",
+      tag:"测试",
+      url:"https://www.mockaroo.com/"
+    },
+    {
+      icon:"👤",
+      title:"Random User",
+      desc:"随机用户 API",
+      tag:"API",
+      url:"https://randomuser.me/"
+    },
+    {
+      icon:"{}",
+      title:"JSONPlaceholder",
+      desc:"免费测试 API",
+      tag:"API",
+      url:"https://jsonplaceholder.typicode.com/"
+    },
+    {
+      icon:"🔐",
+      title:"JWT.io",
+      desc:"JWT 调试与解析",
+      tag:"开发",
+      url:"https://jwt.io/"
+    },
+    {
+      icon:"🆔",
+      title:"UUID Generator",
+      desc:"在线 UUID 生成",
+      tag:"开发",
+      url:"https://www.uuidgenerator.net/"
+    },
+    {
+      icon:"⚡",
+      title:"Supabase",
+      desc:"免费额度后端服务",
+      tag:"后端",
+      url:"https://supabase.com/"
+    },
+    {
+      icon:"🔥",
+      title:"Firebase",
+      desc:"Google 后端平台",
+      tag:"后端",
+      url:"https://firebase.google.com/"
+    },
+    {
+      icon:"🟩",
+      title:"Appwrite",
+      desc:"开源后端平台",
+      tag:"后端",
+      url:"https://appwrite.io/"
+    },
+    {
+      icon:"🖥️",
+      title:"RustDesk",
+      desc:"开源远程控制工具",
+      tag:"远程",
+      url:"https://rustdesk.com/"
+    }
+  ],
 
-developer:[
-  ["🟢","Supabase","免费应用后端 / PostgreSQL","https://supabase.com/","后端"],
-  ["🔥","Firebase","Google 应用后端","https://firebase.google.com/","后端"],
-  ["🚀","Appwrite","开源后端平台","https://appwrite.io/","后端"],
-  ["🦀","RustDesk","免费开源远程控制","https://rustdesk.com/zh-cn/","远程"],
-  ["🔐","JWT.io","JWT 调试工具","https://jwt.io/","开发"],
-  ["🆔","UUID Generator","UUID 工具","https://www.uuidgenerator.net/","开发"],
-  ["🧪","JSONPlaceholder","免费测试 API","https://jsonplaceholder.typicode.com/","API"],
-  ["🧰","Mockaroo","测试数据生成","https://www.mockaroo.com/","测试"],
-  ["👤","Random User","随机用户 API","https://randomuser.me/","API"],
-  ["🗄️","Postman","API 测试","https://www.postman.com/","API"]
-]
+  wallets:[
+    {
+      icon:"🦊",
+      title:"MetaMask",
+      desc:"主流 Web3 钱包",
+      tag:"Wallet",
+      url:"https://metamask.io/"
+    },
+    {
+      icon:"🔵",
+      title:"Trust Wallet",
+      desc:"多链加密钱包",
+      tag:"Wallet",
+      url:"https://trustwallet.com/"
+    },
+    {
+      icon:"👻",
+      title:"Phantom",
+      desc:"Solana / 多链钱包",
+      tag:"Wallet",
+      url:"https://phantom.com/"
+    },
+    {
+      icon:"🟦",
+      title:"Rabby Wallet",
+      desc:"EVM 钱包",
+      tag:"Wallet",
+      url:"https://rabby.io/"
+    },
+    {
+      icon:"🟡",
+      title:"OKX Wallet",
+      desc:"多链钱包入口",
+      tag:"Wallet",
+      url:"https://www.okx.com/web3"
+    },
+    {
+      icon:"🔵",
+      title:"Coinbase Wallet",
+      desc:"Coinbase 钱包",
+      tag:"Wallet",
+      url:"https://www.coinbase.com/wallet"
+    }
+  ],
 
+  search:[
+    {
+      icon:"🔎",
+      title:"BT4G",
+      desc:"BT / Magnet 搜索入口",
+      tag:"搜索",
+      url:"https://bt4gprx.com/"
+    },
+    {
+      icon:"🧲",
+      title:"MagnetDL",
+      desc:"Magnet 搜索入口",
+      tag:"Magnet",
+      url:"https://magnetdl.io/"
+    },
+    {
+      icon:"7️⃣",
+      title:"1337x",
+      desc:"第三方 Torrent 搜索入口",
+      tag:"搜索",
+      url:"https://1337x.to/"
+    },
+    {
+      icon:"🐴",
+      title:"黑马磁力",
+      desc:"中文磁力搜索入口",
+      tag:"磁力",
+      url:"https://heimacili.org/"
+    },
+    {
+      icon:"🧲",
+      title:"磁力多",
+      desc:"磁力搜索入口",
+      tag:"磁力",
+      url:"https://ug.cilido.top/"
+    },
+    {
+      icon:"🔍",
+      title:"磁力搜索",
+      desc:"BT / Magnet 搜索",
+      tag:"磁力",
+      url:"https://so.btgpt.net/"
+    },
+    {
+      icon:"🍿",
+      title:"搜番",
+      desc:"影视 / 动画搜索入口",
+      tag:"影视",
+      url:"https://sc.sefan.cc/"
+    },
+    {
+      icon:"🌌",
+      title:"磁力星球",
+      desc:"磁力搜索入口",
+      tag:"磁力",
+      url:"https://so2.xingqiu.icu/"
+    },
+    {
+      icon:"📺",
+      title:"EZTV",
+      desc:"TV / Torrent 搜索入口",
+      tag:"TV",
+      url:"https://eztvx.to/"
+    },
+    {
+      icon:"🏴‍☠️",
+      title:"The Pirate Bay",
+      desc:"第三方搜索入口",
+      tag:"搜索",
+      url:"https://thepiratebay.org/index.html"
+    }
+  ],
+
+  media:[
+    {
+      icon:"🎵",
+      title:"QQ 音乐",
+      desc:"在线音乐",
+      tag:"音乐",
+      url:"https://y.qq.com/"
+    },
+    {
+      icon:"🎵",
+      title:"网易云音乐",
+      desc:"在线音乐",
+      tag:"音乐",
+      url:"https://music.163.com/"
+    },
+    {
+      icon:"🎧",
+      title:"酷我音乐",
+      desc:"在线音乐",
+      tag:"音乐",
+      url:"https://www.kuwo.cn/"
+    },
+    {
+      icon:"🟢",
+      title:"Spotify",
+      desc:"全球在线音乐",
+      tag:"音乐",
+      url:"https://open.spotify.com/"
+    },
+    {
+      icon:"▶️",
+      title:"YouTube Music",
+      desc:"在线音乐",
+      tag:"音乐",
+      url:"https://music.youtube.com/"
+    },
+    {
+      icon:"🍎",
+      title:"Apple Music",
+      desc:"Apple 在线音乐",
+      tag:"音乐",
+      url:"https://music.apple.com/"
+    },
+    {
+      icon:"📺",
+      title:"哔哩哔哩",
+      desc:"在线视频",
+      tag:"影视",
+      url:"https://www.bilibili.com/"
+    },
+    {
+      icon:"🎬",
+      title:"爱奇艺",
+      desc:"在线视频",
+      tag:"影视",
+      url:"https://www.iqiyi.com/"
+    },
+    {
+      icon:"📺",
+      title:"腾讯视频",
+      desc:"在线视频",
+      tag:"影视",
+      url:"https://v.qq.com/"
+    },
+    {
+      icon:"🎞️",
+      title:"优酷",
+      desc:"在线视频",
+      tag:"影视",
+      url:"https://www.youku.tv/"
+    },
+    {
+      icon:"🔴",
+      title:"Netflix",
+      desc:"全球流媒体",
+      tag:"影视",
+      url:"https://www.netflix.com/"
+    }
+  ],
+
+  live:[
+    {
+      icon:"✈️",
+      title:"FlightRadar24",
+      desc:"全球航班实时跟踪",
+      tag:"航班",
+      url:"https://www.flightradar24.com/"
+    },
+    {
+      icon:"✈️",
+      title:"FlightAware",
+      desc:"航班跟踪",
+      tag:"航班",
+      url:"https://www.flightaware.com/"
+    },
+    {
+      icon:"🌪️",
+      title:"Windy",
+      desc:"全球天气地图",
+      tag:"天气",
+      url:"https://www.windy.com/"
+    },
+    {
+      icon:"🌍",
+      title:"全球时间",
+      desc:"世界时钟",
+      tag:"时间",
+      url:"https://www.timeanddate.com/worldclock/"
+    },
+    {
+      icon:"📹",
+      title:"Webcam Taxi",
+      desc:"全球高清实况摄像头",
+      tag:"Live",
+      url:"https://www.webcamtaxi.com/"
+    },
+    {
+      icon:"🌎",
+      title:"EarthCam",
+      desc:"全球实时摄像头",
+      tag:"Live",
+      url:"https://www.earthcam.com/"
+    }
+  ]
 };
 
-/* =========================================================
-   RENDER
-========================================================= */
 
-function cardHTML(item){
-  return `
-    <a class="resource-card"
-       href="${item[3]}"
-       target="_blank"
-       rel="noopener noreferrer">
-      <div class="card-top">
-        <div class="card-icon">${item[0]}</div>
-        <div class="card-title">${escapeHTML(item[1])}</div>
-      </div>
-      <div class="card-desc">${escapeHTML(item[2])}</div>
-      <span class="card-tag">${escapeHTML(item[4])}</span>
-    </a>
-  `;
-}
-
-function renderGrid(id,data){
-  const el=document.getElementById(id);
-  if(!el)return;
-  el.innerHTML=data.map(cardHTML).join("");
-}
-
-function renderAll(){
-  renderGrid("cloudGrid",resources.cloud);
-  renderGrid("aiGrid",resources.ai);
-  renderGrid("imageGrid",resources.images);
-  renderGrid("creativeGrid",resources.creative);
-  renderGrid("toolsGrid",resources.tools);
-  renderGrid("videoGrid",resources.video);
-  renderGrid("musicGrid",resources.music);
-  renderGrid("movieGrid",resources.movie);
-  renderGrid("liveGrid",resources.live);
-  renderGrid("developerGrid",resources.developer);
-
-  const count=Object.values(resources)
-    .reduce((sum,arr)=>sum+arr.length,0);
-
-  document.getElementById("resourceCount").textContent=count+"+";
-}
+/* ===== Card Renderer ===== */
 
 function escapeHTML(str){
   return String(str)
@@ -2024,603 +2885,1179 @@ function escapeHTML(str){
     .replaceAll("'","&#039;");
 }
 
-/* =========================================================
-   SEARCH
-========================================================= */
+function resourceCard(item){
+  return `
+    <a
+      class="card"
+      href="${item.url}"
+      target="_blank"
+      rel="noopener noreferrer"
+      data-searchable="${escapeHTML(item.title+" "+item.desc+" "+item.tag)}"
+    >
+      <div class="card-icon">${item.icon}</div>
 
-function allResources(){
-  return Object.values(resources).flat();
+      <div class="card-title">${escapeHTML(item.title)}</div>
+
+      <div class="card-desc">
+        ${escapeHTML(item.desc)}
+      </div>
+
+      <div class="card-foot">
+        <span class="card-tag">${escapeHTML(item.tag)}</span>
+        <span class="card-arrow">打开 →</span>
+      </div>
+    </a>
+  `;
 }
 
-function quickSearch(keyword){
-  document.getElementById("globalSearch").value=keyword;
-  globalSearch();
+function renderGrid(id,data){
+  const el = document.getElementById(id);
+  if(!el)return;
+
+  el.innerHTML = data.map(resourceCard).join("");
 }
 
-function globalSearch(){
-  const q=document.getElementById("globalSearch").value.trim();
+function renderAll(){
 
-  if(!q){
-    showToast("请输入要搜索的内容");
-    return;
-  }
+  renderGrid("toolsGrid",resourceSets.tools);
+  renderGrid("cloudGrid",resourceSets.cloud);
+  renderGrid("aiGrid",resourceSets.ai);
+  renderGrid("imageGrid",resourceSets.image);
+  renderGrid("androidGrid",resourceSets.android);
+  renderGrid("iosGrid",resourceSets.ios);
+  renderGrid("mobileSecurityGrid",resourceSets.mobileSecurity);
+  renderGrid("devGrid",resourceSets.dev);
+  renderGrid("walletGrid",resourceSets.wallets);
+  renderGrid("searchGrid",resourceSets.search);
+  renderGrid("mediaGrid",resourceSets.media);
 
-  document.getElementById("searchModal").classList.add("show");
-  document.getElementById("modalSearch").value=q;
-  renderSearchResults();
+  const all = Object.values(resourceSets).flat();
+
+  $("#resourceCount").textContent = all.length + "+";
 }
 
-function renderSearchResults(){
-  const q=document.getElementById("modalSearch").value
-    .trim()
-    .toLowerCase();
 
-  const results=allResources().filter(item=>{
-    return item.join(" ").toLowerCase().includes(q);
+/* ===== Theme ===== */
+
+const savedTheme = localStorage.getItem("resourceHubTheme");
+
+if(savedTheme){
+  document.documentElement.dataset.theme = savedTheme;
+}
+
+function updateThemeIcon(){
+  $("#themeBtn").textContent =
+    document.documentElement.dataset.theme === "light"
+    ? "🌙"
+    : "☀️";
+}
+
+updateThemeIcon();
+
+$("#themeBtn").addEventListener("click",()=>{
+  const current = document.documentElement.dataset.theme;
+
+  const next = current === "light"
+    ? "dark"
+    : "light";
+
+  document.documentElement.dataset.theme = next;
+  localStorage.setItem("resourceHubTheme",next);
+
+  updateThemeIcon();
+});
+
+
+/* ===== Mobile Menu ===== */
+
+$("#menuBtn").addEventListener("click",()=>{
+  $("#navLinks").classList.toggle("mobile-show");
+});
+
+$$(".nav-links a").forEach(a=>{
+  a.addEventListener("click",()=>{
+    $("#navLinks").classList.remove("mobile-show");
   });
+});
 
-  const el=document.getElementById("searchResults");
 
-  if(!results.length){
-    el.innerHTML=`
-      <div class="panel" style="margin-top:10px">
-        <div style="font-size:14px;font-weight:800">没有找到相关资源</div>
-        <div style="color:var(--muted);font-size:12px;margin-top:6px">
-          可以尝试搜索：网盘、AI、图片、PS、邮箱、天气、航班、音乐……
-        </div>
+/* ===== Search ===== */
+
+const allResources = Object.entries(resourceSets).flatMap(([group,list]) =>
+  list.map(item => ({
+    ...item,
+    group
+  }))
+);
+
+function getMatches(keyword){
+
+  const q = keyword.trim().toLowerCase();
+
+  if(!q)return [];
+
+  return allResources.filter(item => {
+    const text = [
+      item.title,
+      item.desc,
+      item.tag,
+      item.group
+    ].join(" ").toLowerCase();
+
+    return text.includes(q);
+  }).slice(0,50);
+}
+
+function openSearchModal(keyword=""){
+
+  $("#searchModal").classList.add("show");
+
+  $("#modalSearchInput").value = keyword;
+
+  renderSearchResults(keyword);
+
+  setTimeout(()=>{
+    $("#modalSearchInput").focus();
+  },50);
+}
+
+function renderSearchResults(keyword){
+
+  const list = getMatches(keyword);
+
+  $("#searchModalHint").textContent =
+    keyword
+      ? `找到 ${list.length} 个相关资源`
+      : "输入关键词搜索全站资源";
+
+  if(!keyword){
+    $("#searchResults").innerHTML = `
+      <div class="muted small" style="padding:15px">
+        可以搜索：AI、网盘、图片、PDF、翻译、Android、iOS、磁力、音乐……
       </div>
     `;
     return;
   }
 
-  el.innerHTML=results.map(item=>`
-    <div class="search-result">
-      <div class="search-result-icon">${item[0]}</div>
-      <div>
-        <div class="search-result-title">${escapeHTML(item[1])}</div>
-        <div class="search-result-desc">${escapeHTML(item[2])}</div>
+  if(!list.length){
+    $("#searchResults").innerHTML = `
+      <div class="muted small" style="padding:15px">
+        没有找到相关资源。
       </div>
-      <a class="open-link"
-         href="${item[3]}"
-         target="_blank"
-         rel="noopener noreferrer">
-        打开
-      </a>
-    </div>
-  `).join("");
-}
-
-document.getElementById("globalSearch")
-  .addEventListener("keydown",e=>{
-    if(e.key==="Enter")globalSearch();
-  });
-
-document.getElementById("modalSearch")
-  .addEventListener("keydown",e=>{
-    if(e.key==="Enter")renderSearchResults();
-  });
-
-/* =========================================================
-   THEME
-========================================================= */
-
-function toggleTheme(){
-  document.body.classList.toggle("light");
-
-  const light=document.body.classList.contains("light");
-
-  localStorage.setItem("rh-theme",light?"light":"dark");
-
-  document.getElementById("themeBtn").textContent=
-    light?"🌙":"☀️";
-}
-
-function loadTheme(){
-  const saved=localStorage.getItem("rh-theme");
-
-  if(saved==="light"){
-    document.body.classList.add("light");
-    document.getElementById("themeBtn").textContent="🌙";
-  }
-}
-
-/* =========================================================
-   IDENTITY / TEST DATA
-========================================================= */
-
-const firstNames=[
-  "Alex","Daniel","Michael","James","William",
-  "John","Robert","David","Kevin","Ryan",
-  "Jason","Chris","Andrew","Thomas","Brian"
-];
-
-const lastNames=[
-  "Smith","Johnson","Williams","Brown","Jones",
-  "Miller","Davis","Wilson","Anderson","Taylor",
-  "Thomas","Moore","Jackson","Martin","Lee"
-];
-
-const cities=[
-  ["New York","NY","10001"],
-  ["Los Angeles","CA","90001"],
-  ["Chicago","IL","60601"],
-  ["Houston","TX","77001"],
-  ["Phoenix","AZ","85001"],
-  ["Seattle","WA","98101"],
-  ["Miami","FL","33101"],
-  ["Boston","MA","02108"]
-];
-
-let currentIdentity=null;
-
-function pick(arr){
-  return arr[Math.floor(Math.random()*arr.length)];
-}
-
-function generateIdentity(){
-  const first=pick(firstNames);
-  const last=pick(lastNames);
-  const city=pick(cities);
-  const n=Math.floor(Math.random()*90)+10;
-
-  currentIdentity={
-    Name:first+" "+last,
-    City:city[0],
-    State:city[1],
-    ZIP:city[2],
-    Phone:"+1 (212) 555-01"+String(Math.floor(Math.random()*100)).padStart(2,"0"),
-    Email:first.toLowerCase()+"."+last.toLowerCase()+n+"@example.test"
-  };
-
-  document.getElementById("identityOutput").innerHTML=
-    Object.entries(currentIdentity).map(([k,v])=>`
-      <div class="identity-item">
-        <div class="identity-label">${k}</div>
-        <div class="identity-value">${escapeHTML(v)}</div>
-      </div>
-    `).join("");
-}
-
-function copyIdentity(){
-  if(!currentIdentity){
-    generateIdentity();
-  }
-
-  copyText(
-    Object.entries(currentIdentity)
-      .map(([k,v])=>`${k}: ${v}`)
-      .join("\n")
-  );
-}
-
-/* =========================================================
-   PASSWORD
-========================================================= */
-
-function generatePassword(){
-
-  const length=parseInt(
-    document.getElementById("passwordLength").value,
-    10
-  );
-
-  let chars="";
-
-  if(document.getElementById("pwUpper").checked)
-    chars+="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-  if(document.getElementById("pwLower").checked)
-    chars+="abcdefghijklmnopqrstuvwxyz";
-
-  if(document.getElementById("pwNumber").checked)
-    chars+="0123456789";
-
-  if(document.getElementById("pwSymbol").checked)
-    chars+="!@#$%^&*()-_=+[]{};:,.?";
-
-  if(!chars){
-    showToast("至少选择一种字符类型");
+    `;
     return;
   }
 
-  let result="";
+  $("#searchResults").innerHTML = list.map(item=>`
+    <a
+      class="search-result"
+      href="${item.url}"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <div>
+        <b>${item.icon} ${escapeHTML(item.title)}</b>
+        <div class="muted small">${escapeHTML(item.desc)}</div>
+      </div>
+      <span class="card-tag">${escapeHTML(item.tag)}</span>
+    </a>
+  `).join("");
+}
 
-  for(let i=0;i<length;i++){
-    result+=chars[Math.floor(Math.random()*chars.length)];
+$("#globalSearchBtn").addEventListener("click",()=>{
+  openSearchModal($("#globalSearch").value);
+});
+
+$("#globalSearch").addEventListener("keydown",e=>{
+  if(e.key === "Enter"){
+    openSearchModal(e.target.value);
   }
+});
 
-  document.getElementById("passwordOutput").value=result;
-}
+$("#modalSearchInput").addEventListener("input",e=>{
+  renderSearchResults(e.target.value);
+});
 
-/* =========================================================
-   UUID
-========================================================= */
+$$("[data-search]").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    openSearchModal(btn.dataset.search);
+  });
+});
 
-function generateUUID(){
 
-  let uuid;
+/* ===== Modal close ===== */
 
-  if(window.crypto && crypto.randomUUID){
-    uuid=crypto.randomUUID();
-  }else{
-    uuid="xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,c=>{
-      const r=Math.random()*16|0;
-      const v=c==="x"?r:(r&3|8);
-      return v.toString(16);
-    });
-  }
+$$("[data-close]").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    document.getElementById(btn.dataset.close).classList.remove("show");
+  });
+});
 
-  document.getElementById("uuidOutput").value=uuid;
-}
-
-/* =========================================================
-   RANDOM TOOLS
-========================================================= */
-
-function generateUsername(){
-
-  const a=[
-    "Blue","Dark","Lucky","Silent","Cool",
-    "Fast","Moon","Cloud","Ocean","Neo",
-    "Cyber","Pixel","Shadow","Star"
-  ];
-
-  const b=[
-    "Fox","Wolf","Tiger","Dragon","Cat",
-    "Bear","Bird","Lion","Rabbit","Knight"
-  ];
-
-  const result=
-    pick(a)+pick(b)+Math.floor(Math.random()*9999);
-
-  document.getElementById("randomOutput").textContent=result;
-}
-
-function generateRandomString(){
-
-  const chars="ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789";
-  let result="";
-
-  for(let i=0;i<24;i++){
-    result+=chars[Math.floor(Math.random()*chars.length)];
-  }
-
-  document.getElementById("randomOutput").textContent=result;
-}
-
-function generateRandomNumber(){
-
-  const result=Math.floor(
-    100000000000+
-    Math.random()*899999999999
-  );
-
-  document.getElementById("randomOutput").textContent=result;
-}
-
-/* =========================================================
-   JSON
-========================================================= */
-
-function generateJSON(){
-
-  const id=Math.floor(Math.random()*999999);
-
-  const data={
-    id,
-    name:pick(firstNames)+" "+pick(lastNames),
-    username:"user_"+id,
-    email:"user"+id+"@example.test",
-    active:true,
-    score:Math.floor(Math.random()*1000),
-    created_at:new Date().toISOString(),
-    test_data:true
-  };
-
-  document.getElementById("jsonOutput").textContent=
-    JSON.stringify(data,null,2);
-}
-
-function copyJSON(){
-  copyText(document.getElementById("jsonOutput").textContent);
-}
-
-/* =========================================================
-   COPY
-========================================================= */
-
-function copyElement(id){
-  const el=document.getElementById(id);
-  copyText(el.value || el.textContent);
-}
-
-async function copyText(text){
-
-  try{
-    await navigator.clipboard.writeText(text);
-    showToast("已复制到剪贴板");
-  }catch(e){
-
-    const ta=document.createElement("textarea");
-    ta.value=text;
-    document.body.appendChild(ta);
-    ta.select();
-
-    try{
-      document.execCommand("copy");
-      showToast("已复制");
-    }catch(err){
-      showToast("复制失败，请手动复制");
+$$(".modal").forEach(modal=>{
+  modal.addEventListener("click",e=>{
+    if(e.target === modal){
+      modal.classList.remove("show");
     }
+  });
+});
 
-    ta.remove();
-  }
-}
 
-/* =========================================================
-   WEATHER
-========================================================= */
+/* ===== Weather ===== */
 
 function weatherEmoji(code){
 
-  if(code===0)return"☀️";
-  if(code<=3)return"🌤️";
-  if(code<=48)return"🌫️";
-  if(code<=67)return"🌧️";
-  if(code<=77)return"❄️";
-  if(code<=82)return"🌦️";
-  if(code>=95)return"⛈️";
+  if(code === 0)return "☀️";
+  if([1,2].includes(code))return "🌤️";
+  if(code === 3)return "☁️";
+  if([45,48].includes(code))return "🌫️";
+  if([51,53,55,56,57].includes(code))return "🌦️";
+  if([61,63,65,66,67].includes(code))return "🌧️";
+  if([71,73,75,77].includes(code))return "❄️";
+  if([80,81,82].includes(code))return "🌦️";
+  if([95,96,99].includes(code))return "⛈️";
 
-  return"🌡️";
+  return "🌤️";
 }
 
 async function getWeather(){
 
-  const city=
-    document.getElementById("weatherCity").value.trim();
+  const city = $("#weatherCity").value.trim();
 
   if(!city){
-    showToast("请输入城市");
+    $("#weatherResult").innerHTML =
+      `<span class="muted small">请输入城市。</span>`;
     return;
   }
 
-  const box=document.getElementById("weatherResult");
-
-  box.innerHTML=
-    `<div style="color:var(--muted);font-size:12px">正在查询 ${escapeHTML(city)}…</div>`;
+  $("#weatherResult").innerHTML =
+    `<span class="muted small">正在查询……</span>`;
 
   try{
 
-    const geo=await fetch(
-      "https://geocoding-api.open-meteo.com/v1/search?name="+
-      encodeURIComponent(city)+
-      "&count=1&language=zh&format=json"
+    const geo = await fetch(
+      "https://geocoding-api.open-meteo.com/v1/search?name="
+      +encodeURIComponent(city)
+      +"&count=1&language=zh&format=json"
     ).then(r=>r.json());
 
-    if(!geo.results || !geo.results.length){
-      box.innerHTML=
-        `<div style="color:var(--red)">没有找到这个城市</div>`;
-      return;
+    if(!geo.results?.length){
+      throw new Error("找不到城市");
     }
 
-    const p=geo.results[0];
+    const place = geo.results[0];
 
-    const weather=await fetch(
-      "https://api.open-meteo.com/v1/forecast?latitude="+
-      p.latitude+
-      "&longitude="+
-      p.longitude+
-      "&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m"+
-      "&timezone=auto"
+    const weather = await fetch(
+      "https://api.open-meteo.com/v1/forecast"
+      +"?latitude="+place.latitude
+      +"&longitude="+place.longitude
+      +"&current=temperature_2m,weather_code,relative_humidity_2m,wind_speed_10m"
+      +"&timezone=auto"
     ).then(r=>r.json());
 
-    const c=weather.current;
+    const c = weather.current;
 
-    box.innerHTML=`
-      <div class="weather-box">
-
-        <div>
-          <div style="font-weight:800;font-size:14px">
-            ${escapeHTML(p.name)}
-          </div>
-
-          <div class="weather-temp">
-            ${Math.round(c.temperature_2m)}°C
-          </div>
-
-          <div style="color:var(--muted);font-size:12px">
-            体感 ${Math.round(c.apparent_temperature)}°C
-          </div>
-
-          <div class="weather-meta">
-            <span class="weather-pill">
-              💧 ${c.relative_humidity_2m}%
-            </span>
-
-            <span class="weather-pill">
-              💨 ${Math.round(c.wind_speed_10m)} km/h
-            </span>
-
-            <span class="weather-pill">
-              🕐 ${weather.timezone}
-            </span>
-          </div>
-        </div>
+    $("#weatherResult").innerHTML = `
+      <div class="weather-main">
 
         <div class="weather-icon">
           ${weatherEmoji(c.weather_code)}
         </div>
 
+        <div>
+          <div class="weather-temp">
+            ${Math.round(c.temperature_2m)}°C
+          </div>
+
+          <div class="weather-city">
+            ${escapeHTML(place.name)}
+            ${place.country ? " · "+escapeHTML(place.country):""}
+          </div>
+
+          <div class="muted small" style="margin-top:6px">
+            湿度 ${c.relative_humidity_2m}% ·
+            风速 ${Math.round(c.wind_speed_10m)} km/h
+          </div>
+        </div>
+
       </div>
     `;
 
-  }catch(e){
+  }catch(err){
 
-    box.innerHTML=`
-      <div style="color:var(--red)">
-        天气服务暂时无法访问，请稍后再试。
-      </div>
+    $("#weatherResult").innerHTML = `
+      <span class="muted small">
+        天气接口暂时不可用，请稍后重试。
+      </span>
     `;
   }
 }
 
-/* =========================================================
-   CRYPTO
-========================================================= */
+$("#weatherBtn").addEventListener("click",getWeather);
 
-async function loadMarket(){
+$("#weatherCity").addEventListener("keydown",e=>{
+  if(e.key==="Enter")getWeather();
+});
+
+
+/* ===== Currency ===== */
+
+const currencies = {
+  USD:"美元 USD",
+  CNY:"人民币 CNY",
+  HKD:"港币 HKD",
+  JPY:"日元 JPY",
+  KRW:"韩元 KRW",
+  EUR:"欧元 EUR",
+  GBP:"英镑 GBP",
+  SGD:"新加坡元 SGD",
+  THB:"泰铢 THB",
+  MYR:"马来西亚林吉特 MYR",
+  INR:"印度卢比 INR",
+  PHP:"菲律宾比索 PHP",
+  VND:"越南盾 VND",
+  USDT:"Tether USDT",
+  BTC:"Bitcoin BTC",
+  ETH:"Ethereum ETH",
+  SOL:"Solana SOL",
+  BNB:"BNB",
+  DOGE:"Dogecoin DOGE",
+  XRP:"XRP"
+};
+
+function fillCurrencySelects(){
+
+  const from = $("#currencyFrom");
+  const to = $("#currencyTo");
+
+  Object.entries(currencies).forEach(([code,name])=>{
+    from.insertAdjacentHTML(
+      "beforeend",
+      `<option value="${code}">${name}</option>`
+    );
+
+    to.insertAdjacentHTML(
+      "beforeend",
+      `<option value="${code}">${name}</option>`
+    );
+  });
+
+  from.value = "USD";
+  to.value = "CNY";
+}
+
+fillCurrencySelects();
+
+let currencyMode = "live";
+
+$$("[data-rate-mode]").forEach(btn=>{
+
+  btn.addEventListener("click",()=>{
+
+    currencyMode = btn.dataset.rateMode;
+
+    $$("[data-rate-mode]").forEach(b=>{
+      b.classList.toggle(
+        "active",
+        b === btn
+      );
+    });
+
+    $(".custom-rate-field").classList.toggle(
+      "hidden",
+      currencyMode !== "custom"
+    );
+
+  });
+
+});
+
+
+async function convertCurrency(){
+
+  const amount = Number($("#currencyAmount").value);
+
+  const from = $("#currencyFrom").value;
+  const to = $("#currencyTo").value;
+
+  if(!Number.isFinite(amount)){
+    $("#currencyResult").innerHTML =
+      `<div class="muted small">请输入正确金额。</div>`;
+    return;
+  }
+
+  if(from === to){
+
+    $("#currencyResult").innerHTML = `
+      <div class="big">
+        ${amount.toLocaleString()} ${to}
+      </div>
+      <div class="muted small">1 ${from} = 1 ${to}</div>
+    `;
+
+    return;
+  }
+
+  if(currencyMode === "custom"){
+
+    const custom = Number($("#customRate").value);
+
+    if(!custom || custom <= 0){
+
+      $("#currencyResult").innerHTML = `
+        <div class="muted small">
+          请填写自定义汇率。
+        </div>
+      `;
+
+      return;
+    }
+
+    const result = amount * custom;
+
+    $("#currencyResult").innerHTML = `
+      <div class="big">
+        ${result.toLocaleString(undefined,{
+          maximumFractionDigits:8
+        })} ${to}
+      </div>
+
+      <div class="muted small">
+        自定义汇率：1 ${from} = ${custom} ${to}
+      </div>
+    `;
+
+    return;
+  }
+
+  $("#currencyResult").innerHTML =
+    `<div class="muted small">正在获取实时汇率……</div>`;
 
   try{
 
-    const symbols=["BTC-USD","ETH-USD","USDT-USD"];
+    const data = await fetch(
+      "https://api.coinbase.com/v2/exchange-rates?currency=USD"
+    ).then(r=>r.json());
 
-    const prices=await Promise.all(
-      symbols.map(async symbol=>{
-        const data=await fetch(
-          "https://api.coinbase.com/v2/prices/"+
-          symbol+
-          "/spot"
-        ).then(r=>r.json());
+    const rates = data.data?.rates || {};
 
-        return data.data.amount;
-      })
+    if(!rates[from] || !rates[to]){
+      throw new Error("currency unavailable");
+    }
+
+    const result =
+      amount * Number(rates[to]) / Number(rates[from]);
+
+    const rate =
+      Number(rates[to]) / Number(rates[from]);
+
+    $("#currencyResult").innerHTML = `
+      <div class="big">
+        ${result.toLocaleString(undefined,{
+          maximumFractionDigits:8
+        })} ${to}
+      </div>
+
+      <div class="muted small">
+        实时汇率：1 ${from} ≈
+        ${rate.toLocaleString(undefined,{
+          maximumFractionDigits:8
+        })} ${to}
+      </div>
+
+      <div class="muted small" style="margin-top:5px">
+        数据来自公开汇率接口，数字资产价格可能快速变化。
+      </div>
+    `;
+
+  }catch(err){
+
+    $("#currencyResult").innerHTML = `
+      <div class="muted small">
+        当前实时汇率接口暂时无法提供
+        ${from} → ${to} 的数据。
+        <br>
+        你可以切换到“自定义汇率”手动输入。
+      </div>
+    `;
+  }
+}
+
+$("#convertCurrency").addEventListener(
+  "click",
+  convertCurrency
+);
+
+$("#swapCurrency").addEventListener("click",()=>{
+
+  const from = $("#currencyFrom");
+  const to = $("#currencyTo");
+
+  const temp = from.value;
+  from.value = to.value;
+  to.value = temp;
+
+  convertCurrency();
+});
+
+
+/* ===== Identity Generator ===== */
+
+const firstMale = [
+  "James","John","Michael","Robert","William",
+  "David","Richard","Joseph","Thomas","Charles",
+  "Daniel","Matthew","Anthony","Christopher","Andrew"
+];
+
+const firstFemale = [
+  "Mary","Patricia","Jennifer","Linda","Elizabeth",
+  "Barbara","Susan","Jessica","Sarah","Karen",
+  "Nancy","Lisa","Betty","Margaret","Sandra"
+];
+
+const lastNames = [
+  "Smith","Johnson","Williams","Brown","Jones",
+  "Miller","Davis","Wilson","Anderson","Taylor",
+  "Thomas","Moore","Martin","Jackson","White",
+  "Harris","Martin","Thompson","Garcia","Martinez"
+];
+
+const states = [
+  ["California","CA","Los Angeles","900"],
+  ["New York","NY","New York","100"],
+  ["Texas","TX","Houston","770"],
+  ["Florida","FL","Miami","331"],
+  ["Illinois","IL","Chicago","606"],
+  ["Washington","WA","Seattle","981"],
+  ["Massachusetts","MA","Boston","021"],
+  ["Colorado","CO","Denver","802"],
+  ["Arizona","AZ","Phoenix","850"],
+  ["Nevada","NV","Las Vegas","891"],
+  ["Oregon","OR","Portland","972"],
+  ["Georgia","GA","Atlanta","303"],
+  ["Virginia","VA","Richmond","232"],
+  ["Ohio","OH","Columbus","432"]
+];
+
+const streetNames = [
+  "Maple","Oak","Pine","Cedar","Lake",
+  "Sunset","Park","River","Hill","Washington",
+  "Lincoln","Jefferson","Main","Garden","Spring"
+];
+
+const globalNames = [
+  ["Alex","Chen","中文 / English"],
+  ["Daniel","Kim","English / 한국어"],
+  ["Lucas","Wang","English / 中文"],
+  ["Emma","Lee","English / 中文"],
+  ["Sofia","Garcia","English / Español"],
+  ["Noah","Miller","English"],
+  ["Mia","Taylor","English"],
+  ["Leo","Martin","English / Français"],
+  ["Anna","Kowalski","English / Polski"],
+  ["Ken","Sato","English / 日本語"]
+];
+
+function randomItem(arr){
+  return arr[Math.floor(Math.random()*arr.length)];
+}
+
+function randomNumber(min,max){
+  return Math.floor(Math.random()*(max-min+1))+min;
+}
+
+function randomDate(){
+
+  const year = randomNumber(1985,2003);
+  const month = String(randomNumber(1,12)).padStart(2,"0");
+  const day = String(randomNumber(1,28)).padStart(2,"0");
+
+  return `${year}-${month}-${day}`;
+}
+
+function randomPassword(){
+  const chars =
+    "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%";
+
+  let result = "";
+
+  for(let i=0;i<14;i++){
+    result += chars[
+      Math.floor(Math.random()*chars.length)
+    ];
+  }
+
+  return result;
+}
+
+function generateUSIdentity(gender="random"){
+
+  let g = gender;
+
+  if(g === "random"){
+    g = Math.random() > .5 ? "male" : "female";
+  }
+
+  const first =
+    g === "male"
+      ? randomItem(firstMale)
+      : randomItem(firstFemale);
+
+  const last = randomItem(lastNames);
+  const state = randomItem(states);
+
+  const phoneArea = randomNumber(201,989);
+  const phoneLast = String(randomNumber(0,99)).padStart(2,"0");
+
+  const username =
+    (
+      first.toLowerCase()
+      +"."+last.toLowerCase()
+      +randomNumber(10,999)
     );
 
-    document.getElementById("marketGrid").innerHTML=
-      symbols.map((s,i)=>`
-        <div class="market-card">
-          <div class="market-name">${s.replace("-USD"," / USD")}</div>
-          <div class="market-price">
-            $${Number(prices[i]).toLocaleString()}
-          </div>
+  return {
+
+    "姓名":`${first} ${last}`,
+
+    "性别":
+      g === "male"
+      ? "Male / 男"
+      : "Female / 女",
+
+    "出生日期":randomDate(),
+
+    "地址":
+      `${randomNumber(100,9999)} ${randomItem(streetNames)} Ave`,
+
+    "城市":state[2],
+
+    "州":`${state[0]} (${state[1]})`,
+
+    "ZIP":
+      state[3]
+      +String(randomNumber(100,999)),
+
+    "电话":
+      `+1 (${phoneArea}) 555-${phoneLast}${randomNumber(10,99)}`,
+
+    "邮箱":
+      `${first.toLowerCase()}.${last.toLowerCase()}${randomNumber(10,999)}@example.test`,
+
+    "用户名":username,
+
+    "密码":randomPassword(),
+
+    "测试编号":
+      `TEST-US-${Date.now().toString(36).toUpperCase()}-${randomNumber(1000,9999)}`,
+
+    "语言":"en-US",
+
+    "时区":
+      "America/"+(
+        state[1] === "NY"
+        ? "New_York"
+        : state[1] === "CA"
+        ? "Los_Angeles"
+        : "Chicago"
+      ),
+
+    "数据性质":"虚构测试数据，不对应真实个人"
+
+  };
+}
+
+function generateGlobalIdentity(){
+
+  const person = randomItem(globalNames);
+
+  return {
+
+    "姓名":`${person[0]} ${person[1]}`,
+
+    "地区":person[2],
+
+    "出生日期":randomDate(),
+
+    "地址":
+      `${randomNumber(10,999)} ${randomItem(streetNames)} Street`,
+
+    "城市":"Test City",
+
+    "邮编":
+      String(randomNumber(10000,99999)),
+
+    "电话":
+      "+00 555 "+randomNumber(100000,999999),
+
+    "邮箱":
+      `${person[0].toLowerCase()}.${person[1].toLowerCase()}${randomNumber(10,999)}@example.test`,
+
+    "用户名":
+      person[0].toLowerCase()
+      +randomNumber(100,9999),
+
+    "密码":randomPassword(),
+
+    "测试编号":
+      `TEST-GLOBAL-${Date.now().toString(36).toUpperCase()}-${randomNumber(1000,9999)}`,
+
+    "数据性质":"虚构测试数据，不对应真实个人"
+
+  };
+}
+
+let latestIdentityText = "";
+
+function generateIdentities(){
+
+  const type = $("#identityType").value;
+  const gender = $("#identityGender").value;
+  const count = Number($("#identityCount").value);
+
+  const list = [];
+
+  for(let i=0;i<count;i++){
+
+    list.push(
+      type === "us"
+      ? generateUSIdentity(gender)
+      : generateGlobalIdentity()
+    );
+
+  }
+
+  latestIdentityText = list.map((obj,index)=>{
+
+    return (
+      `【测试数据 ${index+1}】\n`
+      +
+      Object.entries(obj)
+        .map(([key,value])=>`${key}：${value}`)
+        .join("\n")
+    );
+
+  }).join("\n\n");
+
+  $("#identityResult").innerHTML =
+    list.map((obj,index)=>`
+
+      <div style="
+        border-bottom:1px solid var(--line);
+        padding-bottom:14px;
+        margin-bottom:14px;
+      ">
+
+        <div style="
+          color:var(--cyan);
+          font-weight:800;
+          margin-bottom:8px
+        ">
+          测试数据 ${index+1}
         </div>
-      `).join("");
 
-  }catch(e){
-    document.getElementById("marketGrid").innerHTML=
-      `<div style="color:var(--muted);font-size:12px">
-        行情接口暂时不可用
-      </div>`;
+        ${Object.entries(obj).map(([key,value])=>`
+
+          <div class="result-row">
+
+            <b>${escapeHTML(key)}</b>
+
+            <span>${escapeHTML(value)}</span>
+
+          </div>
+
+        `).join("")}
+
+      </div>
+
+    `).join("");
+
+}
+
+$("#generateIdentity").addEventListener(
+  "click",
+  generateIdentities
+);
+
+$("#copyIdentity").addEventListener("click",async()=>{
+
+  if(!latestIdentityText){
+    showToast("请先生成测试数据");
+    return;
+  }
+
+  await copyText(latestIdentityText);
+
+  showToast("测试数据已复制");
+});
+
+
+/* ===== Copy ===== */
+
+async function copyText(text){
+
+  try{
+
+    await navigator.clipboard.writeText(text);
+
+  }catch{
+
+    const textarea = document.createElement("textarea");
+
+    textarea.value = text;
+    document.body.appendChild(textarea);
+
+    textarea.select();
+
+    document.execCommand("copy");
+
+    textarea.remove();
+
+  }
+
+}
+
+function showToast(text){
+
+  let toast = $("#toast");
+
+  if(!toast){
+
+    toast = document.createElement("div");
+
+    toast.id = "toast";
+
+    toast.style.cssText = `
+      position:fixed;
+      left:50%;
+      bottom:30px;
+      transform:translateX(-50%);
+      z-index:9999;
+      padding:11px 17px;
+      border-radius:12px;
+      background:#10243a;
+      border:1px solid #294865;
+      color:#fff;
+      box-shadow:0 12px 30px rgba(0,0,0,.35);
+      font-size:13px;
+    `;
+
+    document.body.appendChild(toast);
+  }
+
+  toast.textContent = text;
+
+  clearTimeout(window.toastTimer);
+
+  window.toastTimer = setTimeout(()=>{
+    toast.remove();
+  },1800);
+}
+
+
+/* ===== White Noise ===== */
+
+let audioCtx = null;
+let noiseSource = null;
+let noiseGain = null;
+let noiseFilter = null;
+let noiseTimer = null;
+let currentNoise = "rain";
+let noisePlaying = false;
+
+const noiseNames = {
+  rain:"雨声",
+  storm:"雷雨",
+  forest:"森林",
+  ocean:"海浪",
+  cafe:"咖啡厅",
+  brown:"棕噪音"
+};
+
+function createNoiseBuffer(){
+
+  if(!audioCtx){
+    audioCtx = new AudioContext();
+  }
+
+  const seconds = 4;
+  const buffer = audioCtx.createBuffer(
+    1,
+    audioCtx.sampleRate * seconds,
+    audioCtx.sampleRate
+  );
+
+  const data = buffer.getChannelData(0);
+
+  let brown = 0;
+
+  for(let i=0;i<data.length;i++){
+
+    const white = Math.random()*2-1;
+
+    brown = (brown + 0.02*white) / 1.02;
+
+    data[i] =
+      currentNoise === "brown"
+      ? brown * 3.5
+      : white;
+  }
+
+  return buffer;
+}
+
+function startNoise(){
+
+  if(!audioCtx){
+    audioCtx = new AudioContext();
+  }
+
+  if(audioCtx.state === "suspended"){
+    audioCtx.resume();
+  }
+
+  stopNoise(false);
+
+  noiseSource = audioCtx.createBufferSource();
+  noiseSource.buffer = createNoiseBuffer();
+  noiseSource.loop = true;
+
+  noiseGain = audioCtx.createGain();
+
+  noiseGain.gain.value =
+    Number($("#noiseVolume").value);
+
+  noiseFilter = audioCtx.createBiquadFilter();
+
+  if(currentNoise === "rain"){
+    noiseFilter.type = "lowpass";
+    noiseFilter.frequency.value = 5200;
+  }
+
+  if(currentNoise === "storm"){
+    noiseFilter.type = "lowpass";
+    noiseFilter.frequency.value = 3500;
+  }
+
+  if(currentNoise === "forest"){
+    noiseFilter.type = "lowpass";
+    noiseFilter.frequency.value = 2800;
+  }
+
+  if(currentNoise === "ocean"){
+    noiseFilter.type = "lowpass";
+    noiseFilter.frequency.value = 1500;
+  }
+
+  if(currentNoise === "cafe"){
+    noiseFilter.type = "bandpass";
+    noiseFilter.frequency.value = 1000;
+  }
+
+  if(currentNoise === "brown"){
+    noiseFilter.type = "lowpass";
+    noiseFilter.frequency.value = 900;
+  }
+
+  noiseSource
+    .connect(noiseFilter)
+    .connect(noiseGain)
+    .connect(audioCtx.destination);
+
+  noiseSource.start();
+
+  noisePlaying = true;
+
+  $("#noisePlay").textContent = "⏸ 播放中";
+
+  $("#noiseStatus").textContent =
+    `当前：${noiseNames[currentNoise]} · 正在播放`;
+
+  const timer = Number($("#noiseTimer").value);
+
+  if(timer > 0){
+
+    clearTimeout(noiseTimer);
+
+    noiseTimer = setTimeout(()=>{
+      stopNoise();
+    },timer*60*1000);
+
   }
 }
 
-/* =========================================================
-   MODALS
-========================================================= */
+function stopNoise(update=true){
 
-function closeModal(id){
-  document.getElementById(id).classList.remove("show");
-}
+  if(noiseSource){
 
-function modalOutside(e,id){
-  if(e.target.id===id){
-    closeModal(id);
+    try{
+      noiseSource.stop();
+    }catch{}
+
+    noiseSource.disconnect();
+    noiseSource = null;
+  }
+
+  noisePlaying = false;
+
+  if(update){
+
+    $("#noisePlay").textContent = "▶ 播放";
+
+    $("#noiseStatus").textContent =
+      `当前：${noiseNames[currentNoise]} · 未播放`;
   }
 }
 
-function openMobileMenu(){
-  document.getElementById("mobileModal").classList.add("show");
-}
+$$(".noise-btn").forEach(btn=>{
 
-/* =========================================================
-   GAMES
-========================================================= */
+  btn.addEventListener("click",()=>{
 
-let currentGame="";
-let snakeTimer=null;
-let reactionTimer=null;
+    currentNoise = btn.dataset.noise;
+
+    $$(".noise-btn").forEach(b=>{
+      b.classList.toggle(
+        "active",
+        b === btn
+      );
+    });
+
+    if(noisePlaying){
+      startNoise();
+    }else{
+      $("#noiseStatus").textContent =
+        `当前：${noiseNames[currentNoise]} · 未播放`;
+    }
+
+  });
+
+});
+
+$("#noisePlay").addEventListener("click",()=>{
+
+  if(noisePlaying){
+    stopNoise();
+  }else{
+    startNoise();
+  }
+
+});
+
+$("#noiseStop").addEventListener(
+  "click",
+  ()=>stopNoise()
+);
+
+$("#noiseVolume").addEventListener("input",e=>{
+
+  if(noiseGain){
+    noiseGain.gain.value = Number(e.target.value);
+  }
+
+});
+
+$("#noiseTimer").addEventListener("change",()=>{
+
+  if(noisePlaying){
+    startNoise();
+  }
+
+});
+
+
+/* ===== Games ===== */
+
+let currentGame = null;
 
 function openGame(game){
 
-  currentGame=game;
+  currentGame = game;
 
-  document.getElementById("gameModal")
-    .classList.add("show");
+  $("#gameModal").classList.add("show");
 
-  stopGame();
+  $("#gameStage").innerHTML = "";
 
-  if(game==="2048")init2048();
-  if(game==="snake")initSnake();
-  if(game==="reaction")initReaction();
-  if(game==="typing")initTyping();
-  if(game==="memory")initMemory();
+  if(game === "2048"){
+    $("#gameTitle").textContent = "🧩 2048";
+    $("#gameInfo").textContent = "方向键 / WASD";
+    init2048();
+  }
+
+  if(game === "snake"){
+    $("#gameTitle").textContent = "🐍 贪吃蛇";
+    $("#gameInfo").textContent = "方向键控制";
+    initSnake();
+  }
+
+  if(game === "reaction"){
+    $("#gameTitle").textContent = "⚡ 反应力";
+    $("#gameInfo").textContent = "等待颜色变化";
+    initReaction();
+  }
+
+  if(game === "typing"){
+    $("#gameTitle").textContent = "⌨️ 打字挑战";
+    $("#gameInfo").textContent = "输入显示的文字";
+    initTyping();
+  }
+
+  if(game === "memory"){
+    $("#gameTitle").textContent = "🧠 记忆翻牌";
+    $("#gameInfo").textContent = "找到相同图案";
+    initMemory();
+  }
 }
 
 function closeGame(){
-  stopGame();
-  document.getElementById("gameModal").classList.remove("show");
-}
 
-function gameModalOutside(e){
-  if(e.target.id==="gameModal"){
-    closeGame();
-  }
+  stopGame();
+
+  $("#gameModal").classList.remove("show");
 }
 
 function stopGame(){
-  if(snakeTimer){
-    clearInterval(snakeTimer);
-    snakeTimer=null;
+
+  if(window.gameInterval){
+    clearInterval(window.gameInterval);
+    window.gameInterval = null;
   }
 
-  if(reactionTimer){
-    clearTimeout(reactionTimer);
-    reactionTimer=null;
+  if(window.gameTimeout){
+    clearTimeout(window.gameTimeout);
+    window.gameTimeout = null;
   }
 
-  document.onkeydown=null;
+  window.onkeydown = null;
 }
 
-/* ---------------- 2048 ---------------- */
+$("#gameClose").addEventListener(
+  "click",
+  closeGame
+);
 
-let board2048=[];
+$$("[data-game]").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    openGame(btn.dataset.game);
+  });
+});
 
-function init2048(){
 
-  const area=document.getElementById("gameArea");
+/* ===== 2048 ===== */
 
-  area.innerHTML=`
-    <div class="game2048">
+let board2048 = [];
 
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-        <strong>2048</strong>
-        <button class="secondary-btn" onclick="init2048()">新游戏</button>
-      </div>
+function new2048(){
 
-      <div id="board2048" class="board2048"></div>
-
-      <div style="color:var(--muted);font-size:11px;margin-top:10px;text-align:center">
-        使用方向键移动
-      </div>
-
-    </div>
-  `;
-
-  board2048=Array(16).fill(0);
+  board2048 = Array(16).fill(0);
 
   add2048Tile();
   add2048Tile();
 
   render2048();
-
-  document.onkeydown=e=>{
-    const map={
-      ArrowLeft:"left",
-      ArrowRight:"right",
-      ArrowUp:"up",
-      ArrowDown:"down"
-    };
-
-    if(map[e.key]){
-      e.preventDefault();
-      move2048(map[e.key]);
-    }
-  };
 }
 
 function add2048Tile(){
 
-  const empty=[];
+  const empty = [];
 
   board2048.forEach((v,i)=>{
     if(v===0)empty.push(i);
@@ -2628,480 +4065,677 @@ function add2048Tile(){
 
   if(!empty.length)return;
 
-  const index=pick(empty);
+  const index = randomItem(empty);
 
-  board2048[index]=Math.random()<.9?2:4;
+  board2048[index] =
+    Math.random() < .9 ? 2 : 4;
 }
 
 function render2048(){
 
-  const board=document.getElementById("board2048");
+  $("#gameStage").innerHTML = `
+    <div>
+      <div class="board2048" id="board2048"></div>
 
-  if(!board)return;
-
-  board.innerHTML=board2048.map(v=>`
-    <div class="tile">${v||""}</div>
-  `).join("");
-}
-
-function move2048(direction){
-
-  const old=board2048.join(",");
-
-  let rows=[];
-
-  for(let r=0;r<4;r++){
-    rows.push(board2048.slice(r*4,r*4+4));
-  }
-
-  if(direction==="up" || direction==="down"){
-    const cols=[];
-
-    for(let c=0;c<4;c++){
-      const col=[];
-
-      for(let r=0;r<4;r++){
-        col.push(rows[r][c]);
-      }
-
-      cols.push(col);
-    }
-
-    cols.forEach((line,i)=>{
-      if(direction==="down")line.reverse();
-
-      line=merge2048(line);
-
-      while(line.length<4)line.push(0);
-
-      if(direction==="down")line.reverse();
-
-      for(let r=0;r<4;r++){
-        rows[r][i]=line[r];
-      }
-    });
-
-  }else{
-
-    rows=rows.map(line=>{
-      if(direction==="right")line.reverse();
-
-      line=merge2048(line);
-
-      while(line.length<4)line.push(0);
-
-      if(direction==="right")line.reverse();
-
-      return line;
-    });
-
-  }
-
-  board2048=rows.flat();
-
-  if(old!==board2048.join(",")){
-    add2048Tile();
-    render2048();
-  }
-}
-
-function merge2048(line){
-
-  line=line.filter(Boolean);
-
-  for(let i=0;i<line.length-1;i++){
-
-    if(line[i]===line[i+1]){
-      line[i]*=2;
-      line.splice(i+1,1);
-    }
-  }
-
-  return line;
-}
-
-/* ---------------- SNAKE ---------------- */
-
-function initSnake(){
-
-  const area=document.getElementById("gameArea");
-
-  area.innerHTML=`
-    <div class="snake-wrap">
-      <strong>🐍 贪吃蛇</strong>
-
-      <div style="margin:10px;color:var(--muted);font-size:12px">
-        使用方向键控制
-      </div>
-
-      <canvas id="snakeCanvas"
-              width="360"
-              height="360"></canvas>
-
-      <div style="margin-top:10px">
-        <button class="secondary-btn" onclick="initSnake()">重新开始</button>
+      <div style="
+        display:flex;
+        justify-content:center;
+        gap:8px;
+        margin-top:15px
+      ">
+        <button class="btn btn-primary" id="new2048">
+          新游戏
+        </button>
       </div>
     </div>
   `;
 
-  const canvas=document.getElementById("snakeCanvas");
-  const ctx=canvas.getContext("2d");
+  const board = $("#board2048");
 
-  const size=18;
-  const count=20;
+  board2048.forEach(value=>{
 
-  let snake=[
-    {x:10,y:10},
-    {x:9,y:10},
-    {x:8,y:10}
-  ];
+    const tile = document.createElement("div");
 
-  let food={
-    x:Math.floor(Math.random()*count),
-    y:Math.floor(Math.random()*count)
+    tile.className = "tile2048";
+
+    if(value){
+      tile.dataset.v = value;
+      tile.textContent = value;
+    }
+
+    board.appendChild(tile);
+  });
+
+  $("#new2048").addEventListener(
+    "click",
+    new2048
+  );
+}
+
+function slide2048(line){
+
+  const filtered = line.filter(Boolean);
+
+  const result = [];
+
+  for(let i=0;i<filtered.length;i++){
+
+    if(filtered[i] === filtered[i+1]){
+
+      result.push(filtered[i]*2);
+      i++;
+
+    }else{
+
+      result.push(filtered[i]);
+
+    }
+
+  }
+
+  while(result.length<4){
+    result.push(0);
+  }
+
+  return result;
+}
+
+function move2048(direction){
+
+  let old = [...board2048];
+
+  for(let row=0;row<4;row++){
+
+    let line = [];
+
+    for(let col=0;col<4;col++){
+
+      const index =
+        row*4+col;
+
+      line.push(board2048[index]);
+
+    }
+
+    if(direction==="left"){
+
+      line = slide2048(line);
+
+    }else if(direction==="right"){
+
+      line = slide2048(line.reverse()).reverse();
+
+    }else{
+
+      continue;
+
+    }
+
+    for(let col=0;col<4;col++){
+      board2048[row*4+col]=line[col];
+    }
+
+  }
+
+  if(direction==="up" || direction==="down"){
+
+    for(let col=0;col<4;col++){
+
+      let line = [];
+
+      for(let row=0;row<4;row++){
+
+        line.push(
+          board2048[row*4+col]
+        );
+
+      }
+
+      if(direction==="up"){
+
+        line = slide2048(line);
+
+      }else{
+
+        line = slide2048(line.reverse()).reverse();
+
+      }
+
+      for(let row=0;row<4;row++){
+
+        board2048[row*4+col] =
+          line[row];
+
+      }
+
+    }
+
+  }
+
+  if(board2048.some((v,i)=>v!==old[i])){
+    add2048Tile();
+    render2048();
+  }
+
+}
+
+function init2048(){
+
+  new2048();
+
+  window.onkeydown = e=>{
+
+    const keys = {
+      ArrowLeft:"left",
+      a:"left",
+      A:"left",
+
+      ArrowRight:"right",
+      d:"right",
+      D:"right",
+
+      ArrowUp:"up",
+      w:"up",
+      W:"up",
+
+      ArrowDown:"down",
+      s:"down",
+      S:"down"
+    };
+
+    if(keys[e.key]){
+      e.preventDefault();
+      move2048(keys[e.key]);
+    }
+
   };
+}
 
-  let dir={x:1,y:0};
 
-  document.onkeydown=e=>{
-    if(e.key==="ArrowUp" && dir.y!==1)dir={x:0,y:-1};
-    if(e.key==="ArrowDown" && dir.y!==-1)dir={x:0,y:1};
-    if(e.key==="ArrowLeft" && dir.x!==1)dir={x:-1,y:0};
-    if(e.key==="ArrowRight" && dir.x!==-1)dir={x:1,y:0};
-  };
+/* ===== Snake ===== */
 
-  snakeTimer=setInterval(()=>{
+function initSnake(){
 
-    const head={
+  $("#gameStage").innerHTML = `
+    <div class="snake-wrap">
+
+      <canvas
+        id="snakeCanvas"
+        width="420"
+        height="420"
+      ></canvas>
+
+      <div style="margin-top:12px">
+        <button class="btn btn-primary" id="snakeRestart">
+          重新开始
+        </button>
+      </div>
+
+    </div>
+  `;
+
+  const canvas = $("#snakeCanvas");
+  const ctx = canvas.getContext("2d");
+
+  const size = 20;
+
+  let snake;
+  let food;
+  let dir;
+  let score;
+
+  function reset(){
+
+    snake = [
+      {x:10,y:10},
+      {x:9,y:10},
+      {x:8,y:10}
+    ];
+
+    food = {
+      x:randomNumber(0,20),
+      y:randomNumber(0,20)
+    };
+
+    dir = {x:1,y:0};
+
+    score = 0;
+  }
+
+  function draw(){
+
+    ctx.clearRect(
+      0,0,
+      canvas.width,
+      canvas.height
+    );
+
+    ctx.fillStyle = "#0b1725";
+
+    ctx.fillRect(
+      0,0,
+      canvas.width,
+      canvas.height
+    );
+
+    ctx.fillStyle = "#39d8ff";
+
+    snake.forEach(p=>{
+      ctx.fillRect(
+        p.x*size+1,
+        p.y*size+1,
+        size-2,
+        size-2
+      );
+    });
+
+    ctx.fillStyle = "#ff6577";
+
+    ctx.fillRect(
+      food.x*size+2,
+      food.y*size+2,
+      size-4,
+      size-4
+    );
+
+    ctx.fillStyle = "#fff";
+
+    ctx.font = "14px sans-serif";
+
+    ctx.fillText(
+      "Score: "+score,
+      10,
+      20
+    );
+  }
+
+  function tick(){
+
+    const head = {
       x:snake[0].x+dir.x,
       y:snake[0].y+dir.y
     };
 
     if(
       head.x<0 ||
+      head.x>=21 ||
       head.y<0 ||
-      head.x>=count ||
-      head.y>=count ||
-      snake.some(s=>s.x===head.x&&s.y===head.y)
+      head.y>=21 ||
+      snake.some(p=>p.x===head.x && p.y===head.y)
     ){
-      clearInterval(snakeTimer);
-      snakeTimer=null;
 
-      ctx.fillStyle="#fff";
-      ctx.font="bold 22px Arial";
-      ctx.textAlign="center";
-      ctx.fillText("Game Over",180,170);
-      ctx.font="13px Arial";
-      ctx.fillText("点击重新开始",180,195);
-
+      reset();
+      draw();
       return;
     }
 
     snake.unshift(head);
 
-    if(head.x===food.x && head.y===food.y){
+    if(
+      head.x===food.x &&
+      head.y===food.y
+    ){
 
-      food={
-        x:Math.floor(Math.random()*count),
-        y:Math.floor(Math.random()*count)
+      score++;
+
+      food = {
+        x:randomNumber(0,20),
+        y:randomNumber(0,20)
       };
 
     }else{
+
       snake.pop();
+
     }
 
-    ctx.clearRect(0,0,360,360);
+    draw();
+  }
 
-    ctx.fillStyle="#3da5ff";
+  function key(e){
 
-    snake.forEach(s=>{
-      ctx.fillRect(
-        s.x*size,
-        s.y*size,
-        size-2,
-        size-2
-      );
-    });
+    const map = {
+      ArrowUp:{x:0,y:-1},
+      ArrowDown:{x:0,y:1},
+      ArrowLeft:{x:-1,y:0},
+      ArrowRight:{x:1,y:0}
+    };
 
-    ctx.fillStyle="#e8bd61";
-    ctx.fillRect(
-      food.x*size,
-      food.y*size,
-      size-2,
-      size-2
-    );
+    const n = map[e.key];
 
-  },120);
+    if(!n)return;
+
+    if(
+      n.x === -dir.x &&
+      n.y === -dir.y
+    )return;
+
+    dir = n;
+  }
+
+  reset();
+  draw();
+
+  window.onkeydown = key;
+
+  window.gameInterval =
+    setInterval(tick,120);
+
+  $("#snakeRestart").addEventListener(
+    "click",
+    ()=>{
+      reset();
+      draw();
+    }
+  );
 }
 
-/* ---------------- REACTION ---------------- */
+
+/* ===== Reaction ===== */
 
 function initReaction(){
 
-  const area=document.getElementById("gameArea");
+  $("#gameStage").innerHTML = `
+    <div style="width:min(500px,100%)">
 
-  area.innerHTML=`
-    <div style="width:min(500px,100%);text-align:center">
-
-      <div id="reactionBox" class="reaction-box"
-           onclick="reactionClick()">
+      <div
+        class="reaction-box"
+        id="reactionBox"
+      >
         点击开始
       </div>
 
-      <div id="reactionResult"
-           style="margin-top:13px;color:var(--muted)">
-      </div>
+      <div
+        id="reactionResult"
+        style="
+          text-align:center;
+          margin-top:12px;
+          color:var(--muted)
+        "
+      ></div>
 
     </div>
   `;
 
-  window.reactionState="ready";
+  const box = $("#reactionBox");
+  const result = $("#reactionResult");
+
+  let startTime = 0;
+  let waiting = false;
+
+  box.addEventListener("click",()=>{
+
+    if(!waiting){
+
+      box.textContent = "等待……";
+      box.style.background = "#172338";
+
+      waiting = true;
+
+      const delay =
+        randomNumber(1500,4500);
+
+      window.gameTimeout =
+        setTimeout(()=>{
+
+          box.style.background =
+            "#169b67";
+
+          box.textContent =
+            "现在点击！";
+
+          startTime = performance.now();
+
+        },delay);
+
+    }else{
+
+      if(!startTime){
+
+        clearTimeout(window.gameTimeout);
+
+        waiting = false;
+
+        box.textContent =
+          "太早了，再试一次";
+
+        return;
+
+      }
+
+      const ms =
+        Math.round(
+          performance.now()-startTime
+        );
+
+      result.textContent =
+        `你的反应时间：${ms} ms`;
+
+      box.style.background =
+        "#172338";
+
+      box.textContent =
+        "再次挑战";
+
+      waiting = false;
+      startTime = 0;
+
+    }
+
+  });
 }
 
-function reactionClick(){
 
-  const box=document.getElementById("reactionBox");
-  const result=document.getElementById("reactionResult");
-
-  if(window.reactionState==="ready"){
-
-    window.reactionState="waiting";
-
-    box.textContent="等待绿色……";
-
-    const delay=1200+Math.random()*3000;
-
-    reactionTimer=setTimeout(()=>{
-
-      window.reactionState="go";
-      window.reactionStart=performance.now();
-
-      box.textContent="现在点击！";
-
-    },delay);
-
-  }else if(window.reactionState==="waiting"){
-
-    clearTimeout(reactionTimer);
-
-    window.reactionState="ready";
-    box.textContent="太早了，再来一次";
-    result.textContent="不要抢跑 😄";
-
-  }else if(window.reactionState==="go"){
-
-    const ms=Math.round(
-      performance.now()-window.reactionStart
-    );
-
-    window.reactionState="ready";
-
-    box.textContent="再来一次";
-    result.textContent="你的反应时间： "+ms+" ms";
-  }
-}
-
-/* ---------------- TYPING ---------------- */
+/* ===== Typing ===== */
 
 function initTyping(){
 
-  const sentences=[
+  const texts = [
     "资源公社 RESOURCE HUB",
-    "The quick brown fox jumps over the lazy dog.",
-    "Online tools make everyday work easier.",
-    "Technology connects people around the world."
+    "Online tools make life easier.",
+    "Explore useful resources every day.",
+    "Find tools, AI, cloud and developer resources."
   ];
 
-  const text=pick(sentences);
+  const text = randomItem(texts);
 
-  document.getElementById("gameArea").innerHTML=`
-    <div class="typing-box">
+  const start = performance.now();
 
-      <strong>⌨️ 打字测试</strong>
+  $("#gameStage").innerHTML = `
+    <div class="typing-box" style="width:min(700px,100%)">
 
-      <div class="typing-text">
-        ${escapeHTML(text)}
-      </div>
+      <div class="panel" style="text-align:center">
 
-      <input id="typingInput"
-             class="typing-input"
-             placeholder="开始输入上面的文字">
+        <div style="
+          font-size:18px;
+          line-height:2;
+          margin-bottom:10px
+        ">
+          ${escapeHTML(text)}
+        </div>
 
-      <div id="typingResult"
-           style="margin-top:12px;color:var(--muted)">
+        <input
+          id="typingInput"
+          placeholder="开始输入……"
+          autocomplete="off"
+        >
+
+        <div
+          id="typingResult"
+          class="muted small"
+          style="margin-top:12px"
+        >
+          输入完整内容后自动计算。
+        </div>
+
       </div>
 
     </div>
   `;
 
-  const input=document.getElementById("typingInput");
-
-  const start=performance.now();
+  const input = $("#typingInput");
 
   input.focus();
 
   input.addEventListener("input",()=>{
 
-    if(input.value===text){
+    if(input.value === text){
 
-      const seconds=
+      const seconds =
         (performance.now()-start)/1000;
 
-      const cpm=Math.round(text.length/seconds*60);
+      const chars = text.length;
 
-      document.getElementById("typingResult").innerHTML=
-        "完成！速度约 <strong>"+
-        cpm+
-        "</strong> 字符/分钟";
+      const wpm =
+        Math.round(
+          chars/5/(seconds/60)
+        );
 
-      input.disabled=true;
+      $("#typingResult").innerHTML =
+        `完成！耗时 ${seconds.toFixed(1)} 秒 · 约 ${wpm} WPM`;
+
     }
 
   });
 }
 
-/* ---------------- MEMORY ---------------- */
+
+/* ===== Memory ===== */
 
 function initMemory(){
 
-  const symbols=["🍎","🍌","🍇","🍉","🍊","🍋","🥝","🍓"];
+  const symbols = [
+    "🍎","🍎",
+    "🚀","🚀",
+    "🎵","🎵",
+    "🌙","🌙",
+    "🔥","🔥",
+    "🐱","🐱",
+    "⚡","⚡",
+    "💎","💎"
+  ];
 
-  const cards=[...symbols,...symbols]
-    .sort(()=>Math.random()-.5);
+  symbols.sort(()=>Math.random()-.5);
 
-  document.getElementById("gameArea").innerHTML=`
-    <div style="text-align:center">
+  $("#gameStage").innerHTML = `
+    <div>
 
-      <strong>🧠 记忆翻牌</strong>
+      <div class="memory-grid" id="memoryGrid"></div>
 
-      <div id="memoryGrid"
-           class="memory-grid"
-           style="margin-top:15px">
-      </div>
-
-      <div id="memoryStatus"
-           style="margin-top:12px;color:var(--muted);font-size:12px">
+      <div
+        id="memoryResult"
+        style="
+          text-align:center;
+          margin-top:16px;
+          color:var(--muted)
+        "
+      >
+        找到所有相同图案
       </div>
 
     </div>
   `;
 
-  let first=null;
-  let lock=false;
-  let matches=0;
+  const grid = $("#memoryGrid");
 
-  const grid=document.getElementById("memoryGrid");
+  let first = null;
+  let second = null;
+  let lock = false;
+  let matched = 0;
 
-  cards.forEach((symbol,index)=>{
+  symbols.forEach(symbol=>{
 
-    const btn=document.createElement("button");
+    const btn = document.createElement("button");
 
-    btn.className="memory-card";
-    btn.textContent=symbol;
+    btn.className = "memory-card";
+    btn.textContent = symbol;
 
-    btn.onclick=()=>{
+    btn.addEventListener("click",()=>{
 
-      if(lock || btn.classList.contains("open"))return;
+      if(
+        lock ||
+        btn.classList.contains("matched") ||
+        btn === first
+      )return;
 
-      btn.classList.add("open");
+      btn.classList.add("flipped");
 
       if(!first){
-        first={btn,symbol};
+
+        first = btn;
         return;
+
       }
 
-      if(first.symbol===symbol){
+      second = btn;
+      lock = true;
 
-        matches++;
+      if(first.textContent === second.textContent){
 
-        first=null;
+        first.classList.add("matched");
+        second.classList.add("matched");
 
-        if(matches===symbols.length){
-          document.getElementById("memoryStatus")
-            .textContent="🎉 全部完成！";
+        matched += 2;
+
+        first = null;
+        second = null;
+        lock = false;
+
+        if(matched === symbols.length){
+
+          $("#memoryResult").textContent =
+            "🎉 全部完成！";
+
         }
 
       }else{
 
-        lock=true;
-
         setTimeout(()=>{
 
-          btn.classList.remove("open");
-          first.btn.classList.remove("open");
+          first.classList.remove("flipped");
+          second.classList.remove("flipped");
 
-          first=null;
-          lock=false;
+          first = null;
+          second = null;
+          lock = false;
 
         },700);
+
       }
 
-    };
+    });
 
     grid.appendChild(btn);
+
   });
 }
 
-/* =========================================================
-   TOAST
-========================================================= */
 
-let toastTimer=null;
-
-function showToast(text){
-
-  const toast=document.getElementById("toast");
-
-  toast.textContent=text;
-  toast.classList.add("show");
-
-  clearTimeout(toastTimer);
-
-  toastTimer=setTimeout(()=>{
-    toast.classList.remove("show");
-  },1800);
-}
-
-/* =========================================================
-   KEYBOARD ESC
-========================================================= */
+/* ===== Game Modal keyboard close ===== */
 
 document.addEventListener("keydown",e=>{
-  if(e.key==="Escape"){
-    closeModal("searchModal");
-    closeModal("mobileModal");
-    closeGame();
+
+  if(e.key === "Escape"){
+
+    $$(".modal.show").forEach(modal=>{
+      modal.classList.remove("show");
+    });
+
+    stopGame();
   }
+
 });
 
-/* =========================================================
-   INIT
-========================================================= */
 
-document.getElementById("year").textContent=
+/* ===== Year ===== */
+
+$("#year").textContent =
   new Date().getFullYear();
 
+
+/* ===== Init ===== */
+
 renderAll();
-loadTheme();
-
-generateIdentity();
-generateJSON();
-generatePassword();
-generateUUID();
-
-loadMarket();
-
-document.getElementById("weatherCity")
-  .addEventListener("keydown",e=>{
-    if(e.key==="Enter")getWeather();
-  });
-
-/*
-  默认加载天气。
-  如果用户不希望页面自动请求天气，
-  删除下一行即可。
-*/
-getWeather();
 
 </script>
 
